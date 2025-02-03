@@ -1,0 +1,20 @@
+{
+    "about_me": "About me",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "contact": "Contact",
+    "name": "Francisco Rodríguez",
+    "role": "Data Scientist | Machine Learning Specialist | Data Visualization Expert",
+    "intro": "I am a data scientist passionate about transforming complex datasets into actionable insights. My expertise spans data exploration, advanced analytics, machine learning, and data visualization to support strategic decision-making.",
+    "about_me_description": "With a strong analytical mindset and problem-solving skills, I excel at identifying trends and uncovering hidden patterns that drive business growth.",
+    "hobbies": "Beyond work, I’m an active member of a percussion group performing at various events. I also enjoy fitness, dancing, and spending quality time with my dog.",
+    "view_cv": "View my CV",
+    "explore_projects": "Explore my projects",
+    "view_skills": "View my skills",
+    "check_experience": "Check my professional experience",
+    "check_education": "Check my academic background",
+    "get_in_touch": "Get in touch",
+    "rights": "All rights reserved."
+}

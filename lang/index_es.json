@@ -1,0 +1,20 @@
+{
+    "about_me": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "contact": "Contacto",
+    "name": "Francisco Rodríguez",
+    "role": "Científico de datos | Especialista en machine learning | Experto en visualización de datos",
+    "intro": "Soy un científico de datos apasionado por transformar conjuntos de datos complejos en información valiosa. Mi experiencia abarca la exploración de datos, el análisis avanzado, el machine learning y la visualización de datos para apoyar la toma de decisiones estratégicas.",
+    "about_me_description": "Con una sólida mentalidad analítica y habilidades para la resolución de problemas, destaco en la identificación de tendencias y patrones ocultos que impulsan el crecimiento empresarial.",
+    "hobbies": "Fuera del ámbito profesional, formo parte activa de un grupo de percusión que actúa en diversos eventos. Además, disfruto del deporte, el baile y pasar tiempo de calidad con mi perro.",
+    "view_cv": "Ver mi CV",
+    "explore_projects": "Explorar mis proyectos",
+    "view_skills": "Ver mis habilidades",
+    "check_experience": "Ver mi experiencia profesional",
+    "check_education": "Ver mi formación académica",
+    "get_in_touch": "Ponerse en contacto",
+    "rights": "Todos los derechos reservados."
+}

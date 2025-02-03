@@ -1,0 +1,5 @@
+# Ignore all DOCX files in the repository
+*.docx
+
+# Specifically ignore any DOCX files in the CV directory
+assets/cv/*.docx

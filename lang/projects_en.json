@@ -1,0 +1,23 @@
+{
+    "about_me": "About me",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "contact": "Contact",
+    "name": "Francisco Rodríguez",
+    "view_cv": "View my CV",
+    "projects_title": "Projects",
+    "project_1_title": "Amazon Stocks Predictions Pipeline with Airflow",
+    "project_1_description": "Automated stock forecasting pipeline using Apache Airflow, Docker, PostgreSQL, and Python. Fetches Amazon (AMZN) stock data from the Alpha Vantage API, stores it in PostgreSQL, preprocesses it, trains a HGBR model, and visualizes predictions with performance metrics.",
+    "project_2_title": "Statistical Analysis of a Marketing Dataset (in Spanish)",
+    "project_2_description": "This project presents a statistical analysis of a marketing dataset using an R Markdown notebook. It includes exploratory data analysis (EDA), hypothesis testing, and data visualization to uncover key insights about consumer behavior and marketing campaign effectiveness.",
+    "project_3_title": "Predictive Modeling for Diabetes (in Spanish)",
+    "project_3_description": "This project explores predictive modeling for diabetes using an R Markdown notebook. It involves data mining techniques, feature selection, and machine learning models to predict diabetes occurrence. The analysis includes model evaluation and comparison of different predictive approaches.",
+    "project_4_title": "COVID-19 Vaccine Tracker Dashboard",
+    "project_4_description": "This interactive Tableau Public dashboard tracks the global population's vaccination status by country, distinguishing between individuals with one dose, two doses, or unvaccinated. It includes time filters, a dynamic map for visualization, and comparative charts on vaccination efforts worldwide.",
+    "project_5_title": "Waste Management Statistics Dashboard – La Palma (in Spanish)",
+    "project_5_description": "This Power BI dashboard presents waste management statistics for La Palma (2021-2023), categorized by waste type. It compares recycling container numbers and waste collected over time, providing insights on environmental performance trends.",
+    "view_details": "View Details"
+  }
+  

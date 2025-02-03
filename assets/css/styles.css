@@ -1,0 +1,339 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin-top: 56px; /* Para evitar que el navbar tape contenido */
+    background-color: #f9f9f9;
+  }
+  
+  /* Navbar */
+  .navbar {
+    font-weight: bold;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #555;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #007bff;
+  }
+  
+  /* About Me */
+  #about img {
+    border: 3px solid #007bff; /* Borde más fino */
+  }
+  
+  #about a.btn {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  #about a.btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  
+  /* Footer */
+  footer {
+    background: #f8f9fa;
+    color: #555;
+  }
+  
+  footer a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+
+
+/* Contact Section */
+.contact-icon svg {
+    fill: #007bff; /* Cambia el color del icono */
+    width: 30px;
+    height: 30px;
+  }
+  
+  .contact-icon svg:hover {
+    fill: #0056b3; /* Efecto hover */
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .contact-info a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .contact-info a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+/* Skills Section */
+.card {
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Git & GitHub dual icons */
+  .card-body .d-flex img {
+    width: 40px;
+    height: auto;
+  }
+
+  
+/* Contact Section SVG Styling */
+.contact-icon {
+    width: 30px;
+    height: 30px;
+    fill: #007bff; /* Cambia el color principal del ícono */
+  }
+  
+  .contact-icon:hover {
+    fill: #0056b3; /* Cambia el color al pasar el mouse */
+  }
+  
+  .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .contact-info a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .contact-info a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+/* Asegura que el body ocupe toda la altura de la ventana */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Aplica flexbox al contenedor principal */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mantén el contenido principal expandido */
+main {
+  flex: 1;
+}
+
+/* Estilo del footer */
+footer {
+  background-color: #f8f9fa; /* Fondo claro */
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Dual Icon Styling (Power BI & Tableau) */
+.card-body .d-flex img {
+  width: 40px;
+  height: auto;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Container for projects to ensure 3 cards per row */
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Espacio entre tarjetas */
+}
+
+/* Uniform card sizing */
+.project-card {
+  width: calc(33.33% - 20px); /* Ajuste para 3 tarjetas por fila con espacio uniforme */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  margin: 15px 0; /* Espaciado superior e inferior */
+  padding: 20px; /* Espaciado interno */
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Uniform image sizing */
+.project-card img {
+  width: 100%;
+  height: 180px; /* Mantiene tamaño uniforme */
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Ensuring the card body fills the space */
+.project-card .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 15px; /* Espaciado interno para mayor legibilidad */
+}
+
+/* Adjust title spacing */
+.project-card .card-title {
+  margin-top: 15px; /* Espacio entre la imagen y el título */
+  font-size: 1.2rem;
+}
+
+/* Adjust text spacing */
+.project-card .card-text {
+  margin-top: 10px; /* Espacio entre el título y el texto */
+  padding: 0 15px; /* Margen lateral */
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .project-card {
+    width: calc(50% - 20px); /* 2 tarjetas por fila en pantallas medianas */
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    width: 100%; /* 1 tarjeta por fila en móviles */
+  }
+}
+
+
+
+/* Container for skills to ensure 3 cards per row */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Espacio entre tarjetas */
+}
+
+/* Uniform card sizing for skills */
+.skill-card {
+  width: calc(33.33% - 20px); /* Ajuste para 3 tarjetas por fila con espacio uniforme */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  margin: 15px 0; /* Espaciado superior e inferior */
+  padding: 20px; /* Espaciado interno */
+  text-align: center;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Center icons vertically */
+.skill-card .icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Espaciado entre múltiples iconos */
+  margin-bottom: 15px;
+}
+
+.skill-card img {
+  width: 80px; /* Tamaño uniforme para iconos */
+  height: 80px;
+  object-fit: contain; /* Asegura que los iconos no se recorten */
+}
+
+/* Ensuring the card body fills the space */
+.skill-card .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 15px; /* Espaciado interno para mayor legibilidad */
+}
+
+/* Adjust title spacing */
+.skill-card .card-title {
+  margin-top: 10px; /* Espacio entre la imagen y el título */
+  font-size: 1.2rem;
+  color: #007bff; /* Azul como en Projects */
+  font-weight: bold;
+}
+
+/* Adjust text spacing */
+.skill-card .card-text {
+  margin-top: 10px; /* Espacio entre el título y el texto */
+  padding: 0 15px; /* Margen lateral */
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .skill-card {
+    width: calc(50% - 20px); /* 2 tarjetas por fila en pantallas medianas */
+  }
+}
+
+@media (max-width: 768px) {
+  .skill-card {
+    width: 100%; /* 1 tarjeta por fila en móviles */
+  }
+}

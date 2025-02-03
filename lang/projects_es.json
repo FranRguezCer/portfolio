@@ -1,0 +1,23 @@
+{
+    "about_me": "Sobre mí",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "education": "Educación",
+    "contact": "Contacto",
+    "name": "Francisco Rodríguez",
+    "view_cv": "Ver mi CV",
+    "projects_title": "Proyectos",
+    "project_1_title": "Pipeline de Predicciones de Acciones de Amazon con Airflow",
+    "project_1_description": "Pipeline automatizado para la predicción de acciones utilizando Apache Airflow, Docker, PostgreSQL y Python. Extrae datos de acciones de Amazon (AMZN) desde la API de Alpha Vantage, los almacena en PostgreSQL, los preprocesa, entrena un modelo HGBR y visualiza predicciones con métricas de rendimiento.",
+    "project_2_title": "Análisis Estadístico de un Conjunto de Datos de Marketing",
+    "project_2_description": "Este proyecto presenta un análisis estadístico de un conjunto de datos de marketing utilizando un notebook de R Markdown. Incluye análisis exploratorio de datos (EDA), pruebas de hipótesis y visualización de datos para identificar patrones en el comportamiento del consumidor y la efectividad de campañas.",
+    "project_3_title": "Modelado Predictivo para Diabetes",
+    "project_3_description": "Este proyecto explora el modelado predictivo para la diabetes usando un notebook de R Markdown. Incluye técnicas de minería de datos, selección de variables y modelos de machine learning para predecir la aparición de diabetes, junto con la evaluación de modelos.",
+    "project_4_title": "Dashboard de Seguimiento de Vacunación COVID-19",
+    "project_4_description": "Este dashboard interactivo en Tableau Public rastrea el estado de vacunación de la población mundial por país, diferenciando entre personas con una dosis, dos dosis o sin vacunar. Incluye filtros de tiempo, un mapa dinámico para visualización geográfica y gráficos comparativos del progreso de la vacunación.",
+    "project_5_title": "Dashboard de Estadísticas de Gestión de Residuos – La Palma",
+    "project_5_description": "Este dashboard de Power BI muestra estadísticas de gestión de residuos en La Palma (2021-2023), categorizadas por tipo de residuo. Compara el número de contenedores de reciclaje y los kilos recolectados, analizando tendencias respecto al año anterior.",
+    "view_details": "Ver Detalles"
+  }
+  
