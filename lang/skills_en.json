@@ -20,6 +20,6 @@
     "skill_5_description": "Knowledgeable in using Excel for organizing, analyzing, and reporting data. Comfortable with pivot tables and advanced functions.",
     "skill_6_title": "Git & GitHub",
     "skill_6_description": "Proficient in version control using Git and GitHub, managing repositories, collaborating on projects, and handling branches effectively.",
-    "skill_7_title": "LaTeX",
-    "skill_7_description": "Experienced in using LaTeX for scientific writing, academic papers, and document formatting."
+    "skill_7_title": "Docker",
+    "skill_7_description": "Proficient in using Docker for container creation, management, and orchestration. Capable of setting up isolated environments for application development and deployment, optimizing project portability and scalability."
 }
