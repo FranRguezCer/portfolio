@@ -10,7 +10,7 @@
     "education_title": "Education",
     "edu_1_title": "MSc in Data Science",
     "edu_1_institution": "Universitat Oberta de Catalunya",
-    "edu_1_description": "Specialized in machine learning, big data analytics, and statistical modeling, with a strong focus on solving real-world problems through data-driven methodologies.",    
+    "edu_1_description": "Specialized in machine learning, data analytics and visualization, statistical modeling, with a strong focus on solving real-world problems through data-driven methodologies.",    
     "edu_2_title": "BSc in Physics",
     "edu_2_institution": "University of La Laguna",
     "edu_2_description": "Emphasis on theoretical and computational physics, advanced mathematics, and abstract problem modeling. Gained expertise in applying mathematical frameworks to practical scenarios.",    
@@ -22,6 +22,5 @@
     "course_5": "SQL Server (Udemy) - Proficiency in database management and querying with SQL Server.",
     "course_6": "Git and GitHub for Beginners (Udemy) - Version control and collaboration tools for software development.",
     "course_7": "Data Mining and Business Intelligence (FEMXA) - Techniques for extracting insights and generating business value from data.",
-    "course_8": "Excel for Data Analysis (Santander Open Academy) - Advanced Excel features for data manipulation and visualization.",
-    "course_9": "Spatial Remote Sensing and Satellite Imaging (University of Las Palmas de Gran Canaria) - Training in COPERNICUS program technologies and satellite image analysis."
+    "course_8": "Excel for Data Analysis (Santander Open Academy) - Advanced Excel features for data manipulation and visualization."
 }

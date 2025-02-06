@@ -10,7 +10,7 @@
     "education_title": "Educación",
     "edu_1_title": "Máster en Ciencia de Datos",
     "edu_1_institution": "Universitat Oberta de Catalunya",
-    "edu_1_description": "Especializado en aprendizaje automático, análisis de big data y modelado estadístico, con un fuerte enfoque en la resolución de problemas del mundo real mediante metodologías basadas en datos.",
+    "edu_1_description": "Especializado en machine learning, análisis y visualización de datos, modelado estadístico, con un fuerte enfoque en la resolución de problemas del mundo real mediante metodologías basadas en datos.",
     "edu_2_title": "Grado en Física",
     "edu_2_institution": "Universidad de La Laguna",
     "edu_2_description": "Énfasis en física teórica y computacional, matemáticas avanzadas y modelado de problemas abstractos. Experimentado en la aplicación de métodos matemáticos a escenarios prácticos.",
@@ -21,7 +21,6 @@
     "course_4": "Guía Completa de TensorFlow 2.0 (Udemy) - Formación avanzada en TensorFlow 2.0 para la creación de redes neuronales y el despliegue de modelos de IA.",
     "course_5": "SQL Server (Udemy) - Dominio en la gestión de bases de datos y consultas con SQL Server.",
     "course_6": "Git y GitHub para Principiantes (Udemy) - Herramientas de control de versiones y colaboración en el desarrollo de software.",
-    "course_7": "Minería de Datos e Inteligencia de Negocios (FEMXA) - Técnicas para extraer información y generar valor empresarial a partir de datos.",
-    "course_8": "Excel para Análisis de Datos (Santander Open Academy) - Funcionalidades avanzadas de Excel para la manipulación y visualización de datos.",
-    "course_9": "Teledetección Espacial e Imágenes Satelitales (Universidad de Las Palmas de Gran Canaria) - Formación en tecnologías del programa COPERNICUS y análisis de imágenes satelitales."
+    "course_7": "Data Mining y Bussiness Intelligence (FEMXA) - Técnicas para extraer información y generar valor empresarial a partir de datos.",
+    "course_8": "Excel para Análisis de Datos (Santander Open Academy) - Funcionalidades avanzadas de Excel para la manipulación y visualización de datos."
 }
