@@ -18,6 +18,8 @@
     "project_4_description": "This interactive Tableau Public dashboard tracks the global population's vaccination status by country, distinguishing between individuals with one dose, two doses, or unvaccinated. It includes time filters, a dynamic map for visualization, and comparative charts on vaccination efforts worldwide.",
     "project_5_title": "Waste Management Statistics Dashboard – La Palma (in Spanish)",
     "project_5_description": "This Power BI dashboard presents waste management statistics for La Palma (2021-2023), categorized by waste type. It compares recycling container numbers and waste collected over time, providing insights on environmental performance trends.",
-    "view_details": "View Details"
+    "view_details": "View Details",
+    "project_6_title": "X-Ray Pneumonia Diagnosis with Deep Learning",
+    "project_6_description": "Developed a deep learning model to diagnose pneumonia from chest X-ray images using convolutional neural networks (CNNs). The project includes data preprocessing, model training, and evaluation with performance metrics."
   }
   

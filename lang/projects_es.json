@@ -18,6 +18,8 @@
     "project_4_description": "Este dashboard interactivo en Tableau Public rastrea el estado de vacunación de la población mundial por país, diferenciando entre personas con una dosis, dos dosis o sin vacunar. Incluye filtros de tiempo, un mapa dinámico para visualización geográfica y gráficos comparativos del progreso de la vacunación.",
     "project_5_title": "Dashboard de Estadísticas de Gestión de Residuos – La Palma",
     "project_5_description": "Este dashboard de Power BI muestra estadísticas de gestión de residuos en La Palma (2021-2023), categorizadas por tipo de residuo. Compara el número de contenedores de reciclaje y los kilos recolectados, analizando tendencias respecto al año anterior.",
-    "view_details": "Ver Detalles"
+    "view_details": "Ver Detalles",
+    "project_6_title": "Diagnóstico de Neumonía con Rayos X mediante Deep Learning",
+    "project_6_description": "Desarrollé un modelo de deep learning para diagnosticar neumonía a partir de imágenes de rayos X utilizando redes neuronales convolucionales (CNNs). El proyecto incluye preprocesamiento de datos, entrenamiento del modelo y evaluación con métricas de rendimiento."
   }
   
