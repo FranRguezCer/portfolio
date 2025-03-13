@@ -57,8 +57,8 @@ function setLanguage(lang, page) {
         el.textContent = translations[key] || el.textContent;
       });
 
-      // Update the CV link based on the selected language
-      const cvLinks = document.querySelectorAll('[data-i18n="view_cv"]');
+      // Update the CV links (Navbar and About Me)
+      const cvLinks = document.querySelectorAll('[data-i18n="view_cv"], [data-i18n="view_cv_main"]');
       const cvFile = lang === "en" 
         ? "assets/cv/Francisco_Rodriguez_CV_en.pdf" 
         : "assets/cv/Francisco_Rodriguez_CV_es.pdf";
@@ -73,8 +73,8 @@ function setLanguage(lang, page) {
     ? '<img src="assets/img/flag-es.png" alt="Spanish Flag" style="width: 32px; height: 20px; border: none;">' 
     : '<img src="assets/img/flag-uk.png" alt="UK Flag" style="width: 32px; height: 20px; border: none;">';
 
-  langToggle.style.border = "none"; // Ensure the button itself has no border
-  langToggle.style.padding = "0";   // Remove extra padding around the image
-  langToggle.style.background = "transparent"; // Make background transparent
-  langToggle.style.outline = "none"; // Remove focus outline
+  langToggle.style.border = "none";
+  langToggle.style.padding = "0";
+  langToggle.style.background = "transparent";
+  langToggle.style.outline = "none";
 }
