@@ -20,6 +20,11 @@
     "project_5_description": "This Power BI dashboard presents waste management statistics for La Palma (2021-2023), categorized by waste type. It compares recycling container numbers and waste collected over time, providing insights on environmental performance trends.",
     "view_details": "View Details",
     "project_6_title": "X-Ray Pneumonia Diagnosis with Deep Learning",
-    "project_6_description": "Developed a deep learning model to diagnose pneumonia from chest X-ray images using convolutional neural networks (CNNs). The project includes data preprocessing, model training, and evaluation with performance metrics."
+    "project_6_description": "Developed a deep learning model to diagnose pneumonia from chest X-ray images using convolutional neural networks (CNNs). The project includes data preprocessing, model training, and evaluation with performance metrics.",
+    "project_7_title": "Data Jobs Offers: End-to-End Analysis with Web Scraping and NLP",
+    "project_7_description": "Analysis of tech job offers in Spain using web scraping and natural language processing (NLP). The project handles job descriptions in both Spanish and English, includes Python scripts for automated data extraction, and an interactive Google Colab notebook for exploratory data analysis (EDA), keyword extraction, and topic modeling."
+
+
+
   }
   

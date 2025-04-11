@@ -20,6 +20,10 @@
     "project_5_description": "Este dashboard de Power BI muestra estadísticas de gestión de residuos en La Palma (2021-2023), categorizadas por tipo de residuo. Compara el número de contenedores de reciclaje y los kilos recolectados, analizando tendencias respecto al año anterior.",
     "view_details": "Ver Detalles",
     "project_6_title": "Diagnóstico de Neumonía con Rayos X mediante Deep Learning",
-    "project_6_description": "Desarrollé un modelo de deep learning para diagnosticar neumonía a partir de imágenes de rayos X utilizando redes neuronales convolucionales (CNNs). El proyecto incluye preprocesamiento de datos, entrenamiento del modelo y evaluación con métricas de rendimiento."
+    "project_6_description": "Desarrollé un modelo de deep learning para diagnosticar neumonía a partir de imágenes de rayos X utilizando redes neuronales convolucionales (CNNs). El proyecto incluye preprocesamiento de datos, entrenamiento del modelo y evaluación con métricas de rendimiento.",
+    "project_7_title": "Ofertas de Empleo en Datos: Análisis Completo con Web Scraping y PLN",
+    "project_7_description": "Análisis de ofertas de trabajo tecnológicas en España mediante web scraping y procesamiento de lenguaje natural (PLN). El proyecto maneja descripciones de puestos tanto en español como en inglés, e incluye scripts en Python para la recolección automatizada de datos y un notebook interactivo en Google Colab para el análisis exploratorio (EDA), la extracción de palabras clave y el modelado de temas."
+
+
   }
   
