@@ -17,7 +17,7 @@ The website serves as a central hub where you can:
 - Explore the **projects** I’ve worked on.
 - Check out my **skills** and **education**.
 - Get in **contact** with me easily.
-- **View my CV** in both English and Spanish.
+- **View my Resume** full detailed resume.
 
 ## 🛠️ Technologies Used
 
@@ -39,19 +39,18 @@ The website serves as a central hub where you can:
 │   ├── css/
 │   │   └── styles.css                  # Custom styles
 │   ├── js/
-│   │   └── scripts.js                  # JavaScript for interactivity and language switching
+│   │   └── scripts.js                  # JavaScript for interactivity
 │   ├── img/                            # Images and icons
 │   └── svg/                            # SVG icons
 ├── lang/
-│   ├── index_en.json                   # English translations
-│   ├── index_es.json                   # Spanish translations
-│   ├── projects_en.json                # Projects section (English)
-│   ├── projects_es.json                # Projects section (Spanish)
-│   ├── skills_en.json                  # Skills section (English)
-│   └── skills_es.json                  # Skills section (Spanish)
+│   ├── index_en.json                   # Index text homepage
+│   ├── contact_en.json                 # Contact information section text
+│   ├── projects_en.json                # Projects section text
+│   ├── education_en.json               # Education section text
+│   ├── experience_en.json              # Experience section text
+│   └── skills_en.json                  # Skills section text
 ├── assets/cv/
-│   ├── Francisco_Rodriguez_CV_en.pdf   # CV in English
-│   └── Francisco_Rodriguez_CV_es.pdf   # CV in Spanish
+│   ├── Francisco_Rodriguez_CV_en.pdf   # Resume
 └── README.md                           # Project documentation
 
 ```
