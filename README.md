@@ -23,7 +23,7 @@ The website serves as a central hub where you can:
 
 - **HTML5:** For structuring the content of the website.
 - **CSS3 & Bootstrap 5:** For styling, responsive design, and layout consistency.
-- **JavaScript:** To add interactivity and manage dynamic content, including multilingual support (English & Spanish).
+- **JavaScript:** To add interactivity and manage dynamic content.
 - **GitHub Pages:** For hosting the website directly from this repository.
 
 ## 📂 Project Structure
