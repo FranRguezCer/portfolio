@@ -24,6 +24,6 @@
     "project_7_title": "Data Jobs Offers: End-to-End Analysis with Web Scraping and NLP",
     "project_7_description": "Analysis of tech job offers in Spain using web scraping and natural language processing (NLP). The project handles job descriptions in both Spanish and English, includes Python scripts for automated data extraction, and an interactive Google Colab notebook for exploratory data analysis (EDA), keyword extraction, and topic modeling.",
     "project_8_title": "Flashcards Anki Generator with LangChain & OpenAI API",
-    "project_8_description": "A simple Python CLI tool powered by LLMs using LangChain and OpenAI API. It generates Anki flashcards from any PDF or DOCX by extracting text, creating question-answer pairs, and exporting to CSV/JSONL for easy Anki import."
+    "project_8_description": "A simple Python CLI tool powered by LLMs using LangChain and OpenAI API. It generates Anki flashcards from any PDF by extracting text, creating question-answer pairs, and exporting to CSV/JSONL for easy Anki import."
   }
   
