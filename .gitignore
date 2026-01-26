@@ -3,3 +3,5 @@
 
 # Specifically ignore any DOCX files in the CV directory
 assets/cv/*.docx
+.claude
+CLAUDE.md
