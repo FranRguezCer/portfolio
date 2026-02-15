@@ -4,12 +4,12 @@
 
 :root {
   /* Colors */
-  --color-bg: #FAF8F5;
-  --color-surface: #F0EDEA;
+  --color-bg: #F2F3F5;
+  --color-surface: #E5E7EB;
   --color-text: #2D2D2D;
   --color-text-muted: #6B6B6B;
-  --color-accent: #4A9B9B;
-  --color-navy: #1B3A4B;
+  --color-accent: #56B4C2;
+  --color-navy: #1A6B6B;
   --color-white: #FFFFFF;
 
   /* Typography */

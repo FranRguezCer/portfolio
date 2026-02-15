@@ -4,7 +4,13 @@ import { Menu, X } from '@lucide/astro';
 
 <header class="navbar">
   <nav class="container navbar__inner">
-    <a href="#hero" class="navbar__logo">FR</a>
+    <a href="#hero" class="navbar__logo" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="navbar__logo-icon" aria-hidden="true">
+        <rect width="32" height="32" rx="6" fill="#1A6B6B"/>
+        <rect x="5" y="8" width="2.5" height="16" rx="1.25" fill="#56B4C2"/>
+        <text x="19" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="15" fill="#FFFFFF">FR</text>
+      </svg>
+    </a>
 
     <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
       <Menu class="navbar__icon navbar__icon--menu" size={24} />
@@ -48,7 +54,7 @@ import { Menu, X } from '@lucide/astro';
     width: 100%;
     height: var(--nav-height);
     z-index: 100;
-    background-color: rgba(250, 248, 245, 0.85);
+    background-color: rgba(242, 243, 245, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: box-shadow var(--transition-base);
@@ -66,15 +72,19 @@ import { Menu, X } from '@lucide/astro';
   }
 
   .navbar__logo {
-    font-family: var(--font-heading);
-    font-size: var(--text-xl);
-    font-weight: 700;
-    color: var(--color-navy);
+    display: flex;
+    align-items: center;
     text-decoration: none;
   }
 
-  .navbar__logo:hover {
-    color: var(--color-accent);
+  .navbar__logo-icon {
+    width: 36px;
+    height: 36px;
+    transition: opacity var(--transition-fast);
+  }
+
+  .navbar__logo:hover .navbar__logo-icon {
+    opacity: 0.8;
   }
 
   .navbar__toggle {
@@ -106,7 +116,7 @@ import { Menu, X } from '@lucide/astro';
     top: var(--nav-height);
     left: 0;
     width: 100%;
-    background-color: rgba(250, 248, 245, 0.95);
+    background-color: rgba(242, 243, 245, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     flex-direction: column;
