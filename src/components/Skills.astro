@@ -1,0 +1,96 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const skills = [
+  { name: "Python", icon: "devicon:python" },
+  { name: "Pandas", icon: "devicon:pandas" },
+  { name: "PySpark", icon: "devicon:apachespark" },
+  { name: "SQL", icon: "devicon:azuresqldatabase" },
+  { name: "Ollama", icon: "devicon:ollama" },
+  { name: "PyTorch", icon: "devicon:pytorch" },
+  { name: "LangChain", icon: "simple-icons:langchain" },
+  { name: "LangGraph", icon: "simple-icons:langgraph" },
+  { name: "Hugging Face", icon: "devicon:huggingface" },
+  { name: "Scikit-learn", icon: "devicon:scikitlearn" },
+  { name: "Power BI", icon: "simple-icons:powerbi" },
+  { name: "Tableau", icon: "simple-icons:tableau" },
+];
+---
+
+<section id="skills" class="section section--surface">
+  <div class="skills__container">
+    <h2 class="section__title reveal">Skills</h2>
+    <div class="skills__grid">
+      {skills.map((skill, index) => (
+        <div
+          class="skills__item reveal"
+          style={`transition-delay: ${index * 80}ms`}
+        >
+          <Icon name={skill.icon} class="skills__icon" />
+          <span class="skills__label">{skill.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills__container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .skills__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .skills__item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .skills__icon {
+    width: 48px;
+    height: 48px;
+    margin-block-end: var(--space-3);
+  }
+
+  .skills__label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .skills__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .skills__grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .skills__grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+</style>

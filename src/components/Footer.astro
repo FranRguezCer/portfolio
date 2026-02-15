@@ -1,0 +1,56 @@
+---
+import { Github, Linkedin, Mail } from '@lucide/astro';
+---
+
+<footer class="footer">
+  <div class="container">
+    <nav class="footer__socials" aria-label="Social links">
+      <a href="#" target="_blank" rel="noopener noreferrer" class="footer__link" aria-label="GitHub">
+        <Github size={24} />
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="footer__link" aria-label="LinkedIn">
+        <Linkedin size={24} />
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="footer__link" aria-label="Email">
+        <Mail size={24} />
+      </a>
+    </nav>
+
+    <p class="footer__copyright">
+      &copy; 2025 Francisco Rodriguez. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    padding-block: var(--space-12);
+    text-align: center;
+  }
+
+  .footer__socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .footer__link {
+    color: var(--color-white);
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer__link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer__copyright {
+    font-size: var(--text-sm);
+    color: #9CA3AF;
+    margin-top: var(--space-4);
+  }
+</style>

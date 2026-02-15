@@ -1,0 +1,177 @@
+---
+import { Menu, X } from '@lucide/astro';
+---
+
+<header class="navbar">
+  <nav class="container navbar__inner">
+    <a href="#hero" class="navbar__logo">FR</a>
+
+    <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <Menu class="navbar__icon navbar__icon--menu" size={24} />
+      <X class="navbar__icon navbar__icon--close" size={24} />
+    </button>
+
+    <ul class="navbar__links">
+      <li><a class="nav-link" href="#about">About</a></li>
+      <li><a class="nav-link" href="#projects">Projects</a></li>
+      <li><a class="nav-link" href="#skills">Skills</a></li>
+      <li><a class="nav-link" href="#experience">Experience</a></li>
+      <li><a class="nav-link" href="#education">Education</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('.navbar__toggle');
+  const links = document.querySelector('.navbar__links');
+
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    links.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    z-index: 100;
+    background-color: rgba(250, 248, 245, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: box-shadow var(--transition-base);
+  }
+
+  .navbar:global(.scrolled) {
+    box-shadow: var(--shadow-md);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .navbar__logo {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .navbar__logo:hover {
+    color: var(--color-accent);
+  }
+
+  .navbar__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    padding: var(--space-2);
+  }
+
+  .navbar__icon--close {
+    display: none;
+  }
+
+  .navbar__toggle[aria-expanded='true'] .navbar__icon--menu {
+    display: none;
+  }
+
+  .navbar__toggle[aria-expanded='true'] .navbar__icon--close {
+    display: block;
+  }
+
+  .navbar__links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    background-color: rgba(250, 248, 245, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    padding: var(--space-4) 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .navbar__links.open {
+    display: flex;
+  }
+
+  .navbar__links li {
+    text-align: center;
+  }
+
+  .nav-link {
+    display: block;
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .nav-link:global(.active) {
+    color: var(--color-accent);
+  }
+
+  .nav-link:global(.active)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-accent);
+    border-radius: 1px;
+  }
+
+  @media (min-width: 768px) {
+    .navbar__toggle {
+      display: none;
+    }
+
+    .navbar__links {
+      display: flex;
+      position: static;
+      width: auto;
+      flex-direction: row;
+      gap: var(--space-2);
+      padding: 0;
+      background-color: transparent;
+      backdrop-filter: none;
+      box-shadow: none;
+    }
+
+    .nav-link {
+      padding: var(--space-2) var(--space-3);
+    }
+  }
+</style>

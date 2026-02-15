@@ -1,7 +1,5 @@
-# Ignore all DOCX files in the repository
-*.docx
-
-# Specifically ignore any DOCX files in the CV directory
-assets/cv/*.docx
-.claude
-CLAUDE.md
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log

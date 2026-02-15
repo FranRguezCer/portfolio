@@ -1,0 +1,90 @@
+---
+import { ChevronDown } from '@lucide/astro';
+---
+
+<section id="hero" class="hero">
+  <div class="container hero__content">
+    <div class="hero__photo" aria-hidden="true">
+      <span class="hero__initials">FR</span>
+    </div>
+
+    <h1 class="hero__name">Francisco Rodriguez</h1>
+    <p class="hero__subtitle">Data & AI Engineer</p>
+
+    <a href="#about" class="hero__scroll" aria-label="Scroll to content">
+      <ChevronDown class="bounce" size={32} />
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: var(--nav-height);
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-6);
+  }
+
+  .hero__photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero__initials {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-text-muted);
+    user-select: none;
+  }
+
+  .hero__name {
+    font-size: var(--text-3xl);
+    color: var(--color-navy);
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: var(--space-10);
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .hero__scroll:hover {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 768px) {
+    .hero__name {
+      font-size: var(--text-4xl);
+    }
+
+    .hero__subtitle {
+      font-size: var(--text-2xl);
+    }
+  }
+</style>

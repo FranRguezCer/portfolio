@@ -1,0 +1,87 @@
+---
+const education = [
+  {
+    degree: 'MSc in Data Science',
+    institution: 'University of Lorem',
+    years: '2018',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Focused on statistical learning, big data systems, and applied machine learning methodologies.',
+  },
+  {
+    degree: 'BSc in Computer Science',
+    institution: 'University of Ipsum',
+    years: '2016',
+    description:
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Studied algorithms, data structures, software engineering, and database systems.',
+  },
+];
+---
+
+<section id="education" class="section section--surface">
+  <div class="container">
+    <h2 class="section__title reveal">Education</h2>
+
+    <div class="education__grid">
+      {
+        education.map((edu, index) => (
+          <article class="education__card reveal" style={`transition-delay: ${index * 100}ms`}>
+            <h3 class="education__degree">{edu.degree}</h3>
+            <span class="education__institution">{edu.institution}</span>
+            <span class="education__years">{edu.years}</span>
+            <p class="education__description">{edu.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .education__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .education__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .education__card {
+    background-color: var(--color-white);
+    padding: var(--space-8);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--color-accent);
+  }
+
+  .education__degree {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-1);
+  }
+
+  .education__institution {
+    display: block;
+    color: var(--color-accent);
+    font-weight: 500;
+    margin-bottom: var(--space-1);
+  }
+
+  .education__years {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-3);
+  }
+
+  .education__description {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+</style>

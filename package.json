@@ -1,0 +1,18 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@iconify-json/devicon": "^1.2.58",
+    "@iconify-json/simple-icons": "^1.2.70",
+    "@lucide/astro": "^0.564.0",
+    "astro": "^5.17.2",
+    "astro-icon": "^1.1.5"
+  }
+}

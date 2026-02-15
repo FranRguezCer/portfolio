@@ -1,0 +1,150 @@
+---
+import { ExternalLink } from '@lucide/astro';
+
+const projects = [
+  {
+    title: 'ML Pipeline',
+    description:
+      'End-to-end machine learning pipeline for automated model training, evaluation, and deployment with integrated monitoring.',
+  },
+  {
+    title: 'NLP Analyzer',
+    description:
+      'Natural language processing tool for sentiment analysis and topic modeling across multilingual document corpora.',
+  },
+  {
+    title: 'Data Dashboard',
+    description:
+      'Interactive analytics dashboard with real-time data visualizations and customizable reporting for business KPIs.',
+  },
+  {
+    title: 'Computer Vision App',
+    description:
+      'Image classification application leveraging convolutional neural networks for medical imaging diagnostics.',
+  },
+  {
+    title: 'Recommendation Engine',
+    description:
+      'Collaborative filtering recommendation system built to surface relevant content based on user behavior patterns.',
+  },
+  {
+    title: 'ETL Framework',
+    description:
+      'Modular extract-transform-load framework for orchestrating data workflows across heterogeneous source systems.',
+  },
+];
+---
+
+<section id="projects" class="section">
+  <div class="container">
+    <h2 class="section__title reveal">Projects</h2>
+
+    <div class="projects__grid">
+      {
+        projects.map((project, index) => (
+          <article
+            class="project-card reveal"
+            style={`transition-delay: ${index * 100}ms`}
+          >
+            <div class="project-card__image">
+              <span>Project Screenshot</span>
+            </div>
+
+            <div class="project-card__content">
+              <h3 class="project-card__title">{project.title}</h3>
+
+              <p class="project-card__description">{project.description}</p>
+
+              <a
+                href="#"
+                class="project-card__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink size={16} />
+                View on GitHub
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .projects__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .project-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .project-card__image {
+    height: 200px;
+    background-color: #E0DDD8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+  }
+
+  .project-card__content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .project-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+  }
+
+  .project-card__description {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .project-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-top: var(--space-2);
+    transition: color var(--transition-fast);
+  }
+
+  .project-card__link:hover {
+    color: var(--color-navy);
+  }
+</style>
