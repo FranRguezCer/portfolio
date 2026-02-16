@@ -1,35 +1,42 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { Database, DatabaseZap } from '@lucide/astro';
 
 const skills = [
-  { name: "Python", icon: "devicon:python" },
-  { name: "Pandas", icon: "devicon:pandas" },
-  { name: "PySpark", icon: "devicon:apachespark" },
-  { name: "SQL", icon: "devicon:azuresqldatabase" },
-  { name: "Ollama", icon: "devicon:ollama" },
-  { name: "PyTorch", icon: "devicon:pytorch" },
+  { name: "Python", icon: "simple-icons:python" },
+  { name: "Pandas", icon: "simple-icons:pandas" },
+  { name: "PySpark", icon: "simple-icons:apachespark" },
+  { name: "SQL", icon: "lucide:database-solid" },
+  { name: "TensorFlow", icon: "simple-icons:tensorflow" },
+  { name: "PyTorch", icon: "simple-icons:pytorch" },
   { name: "LangChain", icon: "simple-icons:langchain" },
   { name: "LangGraph", icon: "simple-icons:langgraph" },
-  { name: "Hugging Face", icon: "devicon:huggingface" },
-  { name: "Scikit-learn", icon: "devicon:scikitlearn" },
+  { name: "Scikit-learn", icon: "simple-icons:scikitlearn" },
   { name: "Power BI", icon: "simple-icons:powerbi" },
-  { name: "Tableau", icon: "simple-icons:tableau" },
+  { name: "ChromaDB", icon: "lucide:database" },
+  { name: "Git", icon: "simple-icons:git" },
 ];
+
 ---
 
 <section id="skills" class="section section--surface">
   <div class="skills__container">
     <h2 class="section__title reveal">Skills</h2>
-    <div class="skills__grid">
-      {skills.map((skill, index) => (
-        <div
-          class="skills__item reveal"
-          style={`transition-delay: ${index * 80}ms`}
-        >
-          <Icon name={skill.icon} class="skills__icon" />
-          <span class="skills__label">{skill.name}</span>
-        </div>
-      ))}
+    <div class="skills__carousel reveal">
+      <div class="skills__track">
+        {[...skills, ...skills].map((skill) => (
+          <div class="skills__item">
+            {skill.icon === 'lucide:database-solid' ? (
+              <Database class="skills__icon" size={48} fill="currentColor" />
+            ) : skill.icon === 'lucide:database' ? (
+              <Database class="skills__icon" size={48} />
+            ) : (
+              <Icon name={skill.icon} class="skills__icon" />
+            )}
+            <span class="skills__label">{skill.name}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -38,35 +45,65 @@ const skills = [
   .skills__container {
     max-width: var(--max-width);
     margin-inline: auto;
-    padding-inline: var(--space-4);
   }
 
-  .skills__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .skills__carousel {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .skills__track {
+    display: flex;
     gap: var(--space-6);
+    width: max-content;
+    animation: carousel-scroll 40s linear infinite;
+  }
+
+  .skills__track:hover {
+    animation-play-state: paused;
   }
 
   .skills__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--color-white);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
-    padding: var(--space-6);
+    padding: var(--space-6) var(--space-8);
     box-shadow: var(--shadow-sm);
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    flex-shrink: 0;
+    min-width: 120px;
+    transition: box-shadow var(--transition-base);
   }
 
   .skills__item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-glow);
   }
 
   .skills__icon {
     width: 48px;
     height: 48px;
     margin-block-end: var(--space-3);
+    transition: transform var(--transition-base);
+    color: var(--color-accent);
+  }
+
+  .skills__item:hover .skills__icon {
+    transform: scale(1.1);
   }
 
   .skills__label {
@@ -74,23 +111,29 @@ const skills = [
     font-size: var(--text-sm);
     color: var(--color-text);
     text-align: center;
+    white-space: nowrap;
   }
 
-  @media (min-width: 768px) {
-    .skills__grid {
-      grid-template-columns: repeat(4, 1fr);
+  @keyframes carousel-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
     }
   }
 
-  @media (min-width: 1024px) {
-    .skills__grid {
-      grid-template-columns: repeat(5, 1fr);
+  @media (prefers-reduced-motion: reduce) {
+    .skills__track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: auto;
     }
-  }
 
-  @media (min-width: 1280px) {
-    .skills__grid {
-      grid-template-columns: repeat(6, 1fr);
+    .skills__carousel {
+      mask-image: none;
+      -webkit-mask-image: none;
     }
   }
 </style>

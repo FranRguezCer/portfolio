@@ -7,10 +7,10 @@ import { ChevronDown } from '@lucide/astro';
     <div class="hero__photo" aria-hidden="true">
       <span class="hero__initials">FR</span>
     </div>
-
-    <h1 class="hero__name">Francisco Rodriguez</h1>
-    <p class="hero__subtitle">Data & AI Engineer</p>
-
+    <p class="hero__greeting">Hi, I'm Fran</p>
+    <h1 class="hero__headline">AI/ML & Data Engineer</h1>
+    <p class="hero__subtitle">Building production ML pipelines, LLM applications, and analytics platforms from raw data.</p>
+    <a href="#projects" class="hero__cta">View My Work</a>
     <a href="#about" class="hero__scroll" aria-label="Scroll to content">
       <ChevronDown class="bounce" size={32} />
     </a>
@@ -25,6 +25,7 @@ import { ChevronDown } from '@lucide/astro';
     justify-content: center;
     position: relative;
     padding-top: var(--nav-height);
+    background: radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.06) 0%, transparent 60%);
   }
 
   .hero__content {
@@ -36,33 +37,68 @@ import { ChevronDown } from '@lucide/astro';
   }
 
   .hero__photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+    border-radius: 20px;
     background-color: var(--color-surface);
+    border: 2px solid var(--color-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: hero-enter 0.6s var(--ease-out-expo) 0s both;
   }
 
   .hero__initials {
     font-family: var(--font-heading);
     font-size: var(--text-4xl);
     font-weight: 700;
-    color: var(--color-text-muted);
+    color: var(--color-accent);
     user-select: none;
   }
 
-  .hero__name {
-    font-size: var(--text-3xl);
-    color: var(--color-navy);
+  .hero__greeting {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+  }
+
+  .hero__headline {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.1;
+    max-width: 700px;
   }
 
   .hero__subtitle {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     color: var(--color-text-muted);
+    font-weight: 400;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .hero__cta {
+    display: inline-block;
+    padding: var(--space-3) var(--space-8);
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
     font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .hero__cta:hover {
+    background-color: var(--color-accent-hover);
+    box-shadow: var(--shadow-glow);
+    color: var(--color-bg);
   }
 
   .hero__scroll {
@@ -79,12 +115,18 @@ import { ChevronDown } from '@lucide/astro';
   }
 
   @media (min-width: 768px) {
-    .hero__name {
-      font-size: var(--text-4xl);
+    .hero__headline {
+      font-size: var(--text-5xl);
     }
 
     .hero__subtitle {
-      font-size: var(--text-2xl);
+      font-size: var(--text-xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero__headline {
+      font-size: var(--text-6xl);
     }
   }
 </style>

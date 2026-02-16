@@ -3,18 +3,31 @@
    ========================================================================== */
 
 :root {
-  /* Colors */
-  --color-bg: #F2F3F5;
-  --color-surface: #E5E7EB;
-  --color-text: #2D2D2D;
-  --color-text-muted: #6B6B6B;
-  --color-accent: #56B4C2;
-  --color-navy: #1A6B6B;
+  /* Backgrounds */
+  --color-bg: #0B0D11;
+  --color-surface: #13161C;
+  --color-surface-hover: #1A1E27;
+
+  /* Text */
+  --color-text: #E2E4E9;
+  --color-text-muted: #8B8F99;
+  --color-text-faint: #5A5E68;
+
+  /* Accent (cyan family) */
+  --color-accent: #22D3EE;
+  --color-accent-hover: #67E8F9;
+  --color-accent-muted: rgba(34, 211, 238, 0.1);
+
+  /* Semantic */
+  --color-navy: #0E7490;
   --color-white: #FFFFFF;
+  --color-border: #1E2230;
+  --color-code-bg: #161922;
 
   /* Typography */
   --font-heading: 'JetBrains Mono', monospace;
   --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -24,6 +37,8 @@
   --text-2xl: 1.5rem;
   --text-3xl: 2rem;
   --text-4xl: 3rem;
+  --text-5xl: 3.5rem;
+  --text-6xl: 4.5rem;
 
   /* Spacing (4px base) */
   --space-1: 0.25rem;
@@ -48,10 +63,18 @@
   --transition-base: 300ms ease;
   --transition-slow: 500ms ease;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  /* Shadows (dark-appropriate) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(34, 211, 238, 0.15);
+
+  /* Motion tokens (for animations) */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-reveal: 700ms;
+  --reveal-distance: 30px;
 }
 
 /* ==========================================================================
@@ -94,7 +117,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-navy);
+  color: var(--color-accent-hover);
 }
 
 ul, ol {
@@ -105,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-navy);
+  color: var(--color-text);
 }
 
 /* ==========================================================================
@@ -139,13 +162,53 @@ h1, h2, h3, h4, h5, h6 {
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+
+.reveal--up    { transform: translateY(var(--reveal-distance)); }
+.reveal--down  { transform: translateY(calc(-1 * var(--reveal-distance))); }
+.reveal--left  { transform: translateX(var(--reveal-distance)); }
+.reveal--right { transform: translateX(calc(-1 * var(--reveal-distance))); }
+.reveal--scale { transform: scale(0.95); }
+
+/* Default direction if no variant specified */
+.reveal:not(.reveal--down):not(.reveal--left):not(.reveal--right):not(.reveal--scale) {
+  transform: translateY(var(--reveal-distance));
 }
 
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0) scale(1);
+}
+
+/* ==========================================================================
+   Hero Entrance Animation
+   ========================================================================== */
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero__greeting {
+  animation: hero-enter 0.6s var(--ease-out-expo) 0.1s both;
+}
+
+.hero__headline {
+  animation: hero-enter 0.6s var(--ease-out-expo) 0.3s both;
+}
+
+.hero__subtitle {
+  animation: hero-enter 0.6s var(--ease-out-expo) 0.5s both;
+}
+
+.hero__cta {
+  animation: hero-enter 0.6s var(--ease-out-expo) 0.7s both;
+}
+
+.hero__scroll {
+  animation: hero-enter 0.6s var(--ease-out-expo) 0.9s both;
 }
 
 /* ==========================================================================
@@ -165,5 +228,40 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bounce {
-  animation: bounce 2s infinite;
+  animation: bounce 2s infinite 1.5s;
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--up,
+  .reveal--down,
+  .reveal--left,
+  .reveal--right,
+  .reveal--scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .reveal.visible {
+    transform: none;
+  }
+
+  .hero__greeting,
+  .hero__headline,
+  .hero__subtitle,
+  .hero__cta,
+  .hero__scroll {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .bounce {
+    animation: none;
+  }
 }

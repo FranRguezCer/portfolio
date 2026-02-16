@@ -3,34 +3,28 @@ import { ExternalLink } from '@lucide/astro';
 
 const projects = [
   {
-    title: 'ML Pipeline',
-    description:
-      'End-to-end machine learning pipeline for automated model training, evaluation, and deployment with integrated monitoring.',
+    title: 'Flashcards Anki Generator',
+    description: 'CLI pipeline to generate Anki-style Q&A flashcards from any PDF using LangChain and OpenAI.',
+    url: 'https://github.com/FranRguezCer/flashcards-anki-gen',
+    tags: ['LangChain', 'RAG', 'Python'],
   },
   {
-    title: 'NLP Analyzer',
-    description:
-      'Natural language processing tool for sentiment analysis and topic modeling across multilingual document corpora.',
+    title: 'Job Offers NLP Analysis',
+    description: 'Web scraping and NLP pipeline to analyze job offers, comparing keyword matching vs rule-based NLP approaches.',
+    url: 'https://github.com/FranRguezCer/scrapping-nlp-job-offers',
+    tags: ['NLP', 'Web Scraping', 'Python'],
   },
   {
-    title: 'Data Dashboard',
-    description:
-      'Interactive analytics dashboard with real-time data visualizations and customizable reporting for business KPIs.',
+    title: 'X-Ray Pneumonia Diagnosis',
+    description: 'Pneumonia detection with Deep Learning (ResNet18). Trains on chest X-rays with augmentation and visualizes model performance.',
+    url: 'https://github.com/FranRguezCer/x-ray-pneumonia-diagnosis',
+    tags: ['Deep Learning', 'PyTorch', 'Computer Vision'],
   },
   {
-    title: 'Computer Vision App',
-    description:
-      'Image classification application leveraging convolutional neural networks for medical imaging diagnostics.',
-  },
-  {
-    title: 'Recommendation Engine',
-    description:
-      'Collaborative filtering recommendation system built to surface relevant content based on user behavior patterns.',
-  },
-  {
-    title: 'ETL Framework',
-    description:
-      'Modular extract-transform-load framework for orchestrating data workflows across heterogeneous source systems.',
+    title: 'AMZN Stock Price Prediction',
+    description: 'Stock forecasting pipeline with ML and PostgreSQL. Trains an HGBR model on AMZN historical data.',
+    url: 'https://github.com/FranRguezCer/amzn-stocks-price-prediction',
+    tags: ['MLOps', 'ML', 'PostgreSQL'],
   },
 ];
 ---
@@ -43,20 +37,24 @@ const projects = [
       {
         projects.map((project, index) => (
           <article
-            class="project-card reveal"
+            class="project-card reveal reveal--up"
             style={`transition-delay: ${index * 100}ms`}
           >
-            <div class="project-card__image">
-              <span>Project Screenshot</span>
-            </div>
+            <div class="project-card__header" />
 
             <div class="project-card__content">
               <h3 class="project-card__title">{project.title}</h3>
 
               <p class="project-card__description">{project.description}</p>
 
+              <div class="project-card__tags">
+                {project.tags.map((tag) => (
+                  <span class="project-card__tag">{tag}</span>
+                ))}
+              </div>
+
               <a
-                href="#"
+                href={project.url}
                 class="project-card__link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -85,14 +83,9 @@ const projects = [
     }
   }
 
-  @media (min-width: 1024px) {
-    .projects__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
   .project-card {
-    background-color: var(--color-white);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
@@ -100,19 +93,13 @@ const projects = [
   }
 
   .project-card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
   }
 
-  .project-card__image {
-    height: 200px;
-    background-color: #D8DBE0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-muted);
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
+  .project-card__header {
+    height: 6px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-navy));
   }
 
   .project-card__content {
@@ -125,12 +112,28 @@ const projects = [
   .project-card__title {
     font-family: var(--font-heading);
     font-size: var(--text-lg);
+    color: var(--color-text);
   }
 
   .project-card__description {
     color: var(--color-text-muted);
     font-size: var(--text-sm);
     line-height: 1.6;
+  }
+
+  .project-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .project-card__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    background-color: var(--color-accent-muted);
+    padding: var(--space-1) var(--space-3);
+    border-radius: 4px;
   }
 
   .project-card__link {
@@ -145,6 +148,6 @@ const projects = [
   }
 
   .project-card__link:hover {
-    color: var(--color-navy);
+    color: var(--color-accent-hover);
   }
 </style>

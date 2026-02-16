@@ -1,29 +1,100 @@
 ---
+const features = [
+  {
+    title: 'Data Engineering & Pipelines',
+    description: 'Designing and building ETL workflows with Spark, orchestrating datalake ingestion pipelines, and turning messy raw data into reliable, queryable datasets.',
+  },
+  {
+    title: 'AI & LLM Applications',
+    description: 'Developing agentic workflows with LangGraph and local LLMs, building RAG pipelines, and applying deep learning to real-world problems.',
+  },
+  {
+    title: 'Analytics & Visualization',
+    description: 'Creating interactive dashboards with Power BI and Tableau, geospatial visualizations with ArcGIS, and data-driven reports for decision-making.',
+  },
+];
 ---
 
 <section id="about" class="section section--surface">
   <div class="container">
     <h2 class="section__title reveal">About Me</h2>
+    <p class="about__intro reveal">
+      I'm a Data & AI Engineer who thrives on turning raw information into intelligent systems. From datalake pipelines to agentic AI workflows, I build the infrastructure that makes data useful and accessible.
+    </p>
 
-    <p class="about__text reveal">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. As a data engineer
-      with a passion for building scalable pipelines and intelligent systems, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-      dolore eu fugiat nulla pariatur, specializing in transforming raw data into
-      actionable insights through modern cloud architectures and machine learning workflows.
+    <div class="about__features">
+      {features.map((f, i) => (
+        <div class="about__feature reveal reveal--scale" style={`transition-delay: ${i * 100}ms`}>
+          <h3 class="about__feature-title">{f.title}</h3>
+          <p class="about__feature-desc">{f.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="about__personal reveal">
+      Based in the Canary Islands, where working beside one of the world's largest telescopes fuels a deep curiosity for science and data. Outside of work, you'll find me making music, exploring the outdoors, or diving into whatever catches my curiosity next.
     </p>
   </div>
 </section>
 
 <style>
-  .about__text {
+  .about__intro {
     font-size: var(--text-lg);
     line-height: 1.8;
-    color: var(--color-text);
+    color: var(--color-text-muted);
     max-width: 700px;
     margin-inline: auto;
     text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .about__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .about__feature {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-accent);
+    border-radius: 8px;
+    padding: var(--space-8);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .about__feature:hover {
+    border-color: var(--color-accent-muted);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .about__feature-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .about__feature-desc {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+  }
+
+  .about__personal {
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin-inline: auto;
+    text-align: center;
+    font-style: italic;
+  }
+
+  @media (min-width: 768px) {
+    .about__features {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>

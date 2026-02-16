@@ -1,18 +1,16 @@
 ---
 const education = [
   {
-    degree: 'MSc in Data Science',
-    institution: 'University of Lorem',
-    years: '2018',
+    degree: 'MSc in Data Science & Big Data',
+    year: '2025',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Focused on statistical learning, big data systems, and applied machine learning methodologies.',
+      'Advanced studies in statistical learning, big data systems, and applied machine learning.',
   },
   {
-    degree: 'BSc in Computer Science',
-    institution: 'University of Ipsum',
-    years: '2016',
+    degree: 'BSc in Physics',
+    year: '2021',
     description:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Studied algorithms, data structures, software engineering, and database systems.',
+      'Foundation in mathematical modeling, scientific computing, and analytical thinking.',
   },
 ];
 ---
@@ -26,8 +24,7 @@ const education = [
         education.map((edu, index) => (
           <article class="education__card reveal" style={`transition-delay: ${index * 100}ms`}>
             <h3 class="education__degree">{edu.degree}</h3>
-            <span class="education__institution">{edu.institution}</span>
-            <span class="education__years">{edu.years}</span>
+            <span class="education__year">{edu.year}</span>
             <p class="education__description">{edu.description}</p>
           </article>
         ))
@@ -52,7 +49,8 @@ const education = [
   }
 
   .education__card {
-    background-color: var(--color-white);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     padding: var(--space-8);
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
@@ -65,14 +63,7 @@ const education = [
     margin-bottom: var(--space-1);
   }
 
-  .education__institution {
-    display: block;
-    color: var(--color-accent);
-    font-weight: 500;
-    margin-bottom: var(--space-1);
-  }
-
-  .education__years {
+  .education__year {
     display: block;
     color: var(--color-text-muted);
     font-size: var(--text-sm);

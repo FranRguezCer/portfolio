@@ -1,25 +1,25 @@
 ---
 const experiences = [
   {
-    title: 'Senior Data Engineer',
-    company: 'Tech Company A',
-    date: '2022–Present',
+    title: 'Data & AI Engineer',
+    company: 'Gran Telescopio Canarias (GTC)',
+    date: '2025 – Present',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'Building datalake ingestion pipelines with Spark, developing agentic workflows based on LangGraph using RAG with vector databases and local LLM inference, and creating an internal analytics platform to track telescope effective time usage by crossing incidence and night report data.',
   },
   {
     title: 'Data Scientist',
-    company: 'Tech Company B',
-    date: '2020–2022',
+    company: 'Cabildo de La Palma',
+    date: '2024 – 2025',
     description:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit.',
+      'Automated ETL pipelines and reports, designed Power BI dashboards and geospatial visualizations with ESRI ArcGIS platforms. Provided analytics and studied relationships between CO2 levels in the volcano exclusion zone from the 2021 La Palma eruption and other environmental factors.',
   },
   {
-    title: 'Junior Data Analyst',
-    company: 'Tech Company C',
-    date: '2018–2020',
+    title: 'Freelance Tutor',
+    company: 'Self-employed',
+    date: '2018 – 2020',
     description:
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. Deserunt mollit anim id est laborum sed perspiciatis.',
+      'Provided personalized tutoring to secondary-level students in science and mathematics.',
   },
 ];
 ---
@@ -33,7 +33,7 @@ const experiences = [
         experiences.map((exp, index) => (
           <div class={`timeline__item ${index % 2 === 0 ? 'timeline__item--left' : 'timeline__item--right'}`}>
             <div class="timeline__dot" />
-            <article class="timeline__card reveal" style={`transition-delay: ${index * 100}ms`}>
+            <article class={`timeline__card reveal ${index % 2 === 0 ? 'reveal--left' : 'reveal--right'}`} style={`transition-delay: ${index * 100}ms`}>
               <h3 class="timeline__title">{exp.title}</h3>
               <span class="timeline__company">{exp.company}</span>
               <span class="timeline__date">{exp.date}</span>
@@ -62,7 +62,7 @@ const experiences = [
     bottom: 0;
     left: 5px;
     width: 2px;
-    background-color: var(--color-surface);
+    background-color: var(--color-border);
   }
 
   .timeline__item {
@@ -84,10 +84,12 @@ const experiences = [
     background-color: var(--color-accent);
     border-radius: 50%;
     z-index: 1;
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.3);
   }
 
   .timeline__card {
-    background-color: var(--color-white);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     padding: var(--space-6);
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
