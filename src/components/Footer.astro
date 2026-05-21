@@ -1,0 +1,10 @@
+---
+interface Props {
+  lang: 'en' | 'es';
+}
+const { lang } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer>
+  <small>&copy; {year} Francisco Rodriguez. {lang === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</small>
+</footer>
