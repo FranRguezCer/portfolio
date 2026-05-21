@@ -1,0 +1,11 @@
+---
+interface Props {
+  lang: 'en' | 'es';
+}
+const { lang } = Astro.props;
+---
+<header>
+  <nav aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
+    <!-- Wave 3 fills this: brand, nav links, lang toggle -->
+  </nav>
+</header>
