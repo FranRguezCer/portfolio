@@ -27,3 +27,6 @@ dist/
 .vscode/*
 !.vscode/extensions.json
 *.log
+
+# claude code worktrees and agent state
+.claude/
