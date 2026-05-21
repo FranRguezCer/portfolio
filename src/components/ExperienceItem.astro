@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 import { t, type Locale } from '../i18n/ui';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 
 const { entry, lang } = Astro.props;
 const { role, organization, location, startDate, endDate, current } = entry.data;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 const formatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-US', { year: 'numeric', month: 'short' });
 const startStr = formatter.format(startDate);

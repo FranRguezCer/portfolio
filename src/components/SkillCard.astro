@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 
 interface Props {
   entry: CollectionEntry<'skills'>;
@@ -8,7 +9,7 @@ interface Props {
 
 const { entry, iconHtml } = Astro.props;
 const { name, tags } = entry.data;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 <article class="skill-card">
   {iconHtml && <div class="icon" set:html={iconHtml} aria-hidden="true" />}

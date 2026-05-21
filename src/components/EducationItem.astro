@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 
 interface Props {
   entry: CollectionEntry<'education'>;
@@ -7,7 +8,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { degree, institution, location, startYear, endYear } = entry.data;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 const years = startYear && endYear ? `${startYear} – ${endYear}` : startYear ? `${startYear}` : endYear ? `${endYear}` : '';
 ---
