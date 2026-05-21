@@ -1,11 +1,80 @@
 ---
+import { t, routes, type Locale } from '../i18n/ui';
+import LangToggle from './LangToggle.astro';
+
 interface Props {
-  lang: 'en' | 'es';
+  lang: Locale;
 }
+
 const { lang } = Astro.props;
+const nav = [
+  { key: 'nav.home', href: routes[lang].home },
+  { key: 'nav.projects', href: routes[lang].projects },
+  { key: 'nav.skills', href: routes[lang].skills },
+  { key: 'nav.experience', href: routes[lang].experience },
+  { key: 'nav.education', href: routes[lang].education },
+  { key: 'nav.contact', href: routes[lang].contact },
+] as const;
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
 ---
-<header>
-  <nav aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
-    <!-- Wave 3 fills this: brand, nav links, lang toggle -->
+<header class="navbar">
+  <nav aria-label={lang === 'es' ? 'Navegacion principal' : 'Main navigation'}>
+    <a class="brand" href={routes[lang].home}>{t(lang, 'nav.brand')}</a>
+    <ul class="nav-links">
+      {nav.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            aria-current={currentPath === item.href.replace(/\/$/, '') ? 'page' : undefined}
+          >
+            {t(lang, item.key)}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <LangToggle lang={lang} />
   </nav>
 </header>
+
+<style>
+  .navbar {
+    border-block-end: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+  nav {
+    max-inline-size: 72rem;
+    margin-inline: auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .brand {
+    font-weight: 600;
+    color: var(--color-fg);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+  .nav-links a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .nav-links a:hover,
+  .nav-links a[aria-current='page'] {
+    color: var(--color-fg);
+  }
+  .nav-links a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 0.125rem;
+  }
+</style>
