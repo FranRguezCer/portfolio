@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://franrguezcer.github.io',
   base: '/portfolio/',
   output: 'static',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   integrations: [
     mdx(),
     sitemap(),
