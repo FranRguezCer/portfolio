@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EducationItem from '../components/EducationItem.astro';
+import { t } from '../i18n/ui';
+
+const lang = 'en' as const;
+const all = (await getCollection('education', ({ data }) => data.locale === lang))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const degrees = all.filter((e) => e.data.kind === 'degree');
+const courses = all.filter((e) => e.data.kind === 'courses');
+---
+<BaseLayout title="Education · Francisco Rodriguez" description="Academic background and relevant courses." lang={lang}>
+  <section class="education">
+    <h1>{t(lang, 'section.education')}</h1>
+    <div class="list">
+      {degrees.map((entry) => <EducationItem entry={entry} />)}
+    </div>
+
+    {courses.length > 0 && (
+      <section class="courses">
+        <h2>{t(lang, 'section.courses')}</h2>
+        {courses.map((entry) => <EducationItem entry={entry} />)}
+      </section>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .education { max-inline-size: 56rem; margin-inline: auto; padding: 3rem 1.5rem; display: flex; flex-direction: column; gap: 2rem; }
+  h1 { font-size: 2rem; margin: 0; font-weight: 700; }
+  h2 { font-size: 1.25rem; margin: 0; font-weight: 600; }
+  .list, .courses { display: flex; flex-direction: column; }
+  .courses { gap: 1rem; }
+</style>
