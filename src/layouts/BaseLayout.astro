@@ -22,7 +22,7 @@ const {
 
 const siteUrl = 'https://franrguezcer.github.io';
 const basePath = '/portfolio';
-const canonicalUrl = canonical ?? `${siteUrl}${basePath}${Astro.url.pathname.replace(/\/$/, '')}`;
+const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
 const personSchema = {
