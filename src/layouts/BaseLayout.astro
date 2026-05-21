@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+import SkipToContent from '../components/SkipToContent.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'en' | 'es';
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'en',
+  ogImage = '/portfolio/img/og-default.png',
+  canonical,
+} = Astro.props;
+
+const siteUrl = 'https://franrguezcer.github.io';
+const basePath = '/portfolio';
+const canonicalUrl = canonical ?? `${siteUrl}${basePath}${Astro.url.pathname.replace(/\/$/, '')}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Francisco Rodriguez',
+  jobTitle: 'Data Scientist',
+  url: `${siteUrl}${basePath}/`,
+  sameAs: [
+    'https://linkedin.com/in/franciscojoserodriguezcerezo',
+    'https://github.com/FranRguezCer',
+  ],
+};
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" type="image/svg+xml" href={`${basePath}/img/favicon.svg`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${basePath}/img/favicon-16x16.png`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${basePath}/img/favicon-32x32.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${basePath}/img/apple-touch-icon.png`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <SkipToContent label={lang === 'es' ? 'Saltar al contenido' : 'Skip to content'} />
+    <Navbar lang={lang} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>
