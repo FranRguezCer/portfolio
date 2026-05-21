@@ -1,0 +1,114 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { t, type Locale } from '../i18n/ui';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  lang: Locale;
+}
+
+const { entry, lang } = Astro.props;
+const { title, summary, image, link, linkType, tech, year } = entry.data;
+
+const ctaKey =
+  linkType === 'repo' ? 'cta.viewRepo'
+  : linkType === 'dashboard' ? 'cta.viewDashboard'
+  : linkType === 'demo' ? 'cta.viewDemo'
+  : linkType === 'notebook' ? 'cta.viewNotebook'
+  : 'cta.viewProject';
+---
+<article class="project-card">
+  <a class="card-link" href={link} target="_blank" rel="noopener noreferrer">
+    <Image src={image} alt={title} class="card-image" widths={[320, 640]} sizes="(min-width: 720px) 360px, 100vw" />
+    <div class="card-body">
+      <header>
+        <h3>{title}</h3>
+        <span class="year">{year}</span>
+      </header>
+      <p>{summary}</p>
+      <ul class="tech" aria-label="Tech stack">
+        {tech.map((item) => <li>{item}</li>)}
+      </ul>
+      <span class="cta">{t(lang, ctaKey)} <span aria-hidden="true">&rarr;</span></span>
+    </div>
+  </a>
+</article>
+
+<style>
+  .project-card {
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-bg);
+    overflow: hidden;
+    transition: border-color 0.15s ease-out, transform 0.15s ease-out;
+  }
+  .project-card:hover {
+    border-color: var(--color-fg);
+    transform: translateY(-2px);
+  }
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+  }
+  .card-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .card-image {
+    inline-size: 100%;
+    block-size: 12rem;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .card-body header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-fg);
+  }
+  .year {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .tech li {
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+    background: var(--color-surface);
+    color: var(--color-muted);
+    border-radius: 0.25rem;
+  }
+  .cta {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-fg);
+  }
+</style>
