@@ -1,18 +1,7 @@
 ---
-import '../styles/global.css';
-const lang = 'en';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<!doctype html>
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portfolio scaffold</title>
-  </head>
-  <body>
-    <main>
-      <h1>Portfolio scaffold</h1>
-      <p>Astro + Tailwind 4 scaffold. Real content lands in later waves.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout title="Portfolio scaffold" description="Astro scaffold for Francisco Rodriguez portfolio. Real content lands in later waves." lang="en">
+  <h1>Portfolio scaffold</h1>
+  <p>Astro + Tailwind 4 scaffold consuming the base layout. Real content lands in later waves.</p>
+</BaseLayout>
