@@ -1,0 +1,18 @@
+---
+title: Pipeline de Prediccion de Stocks de Amazon con Airflow
+summary: Pipeline de forecasting de stocks automatizado con Apache Airflow, Docker, PostgreSQL y Python que ingiere datos de Amazon, entrena un modelo HGBR y persiste las predicciones con metricas de rendimiento.
+order: 1
+year: 2024
+image: ../../../assets/projects/amzn-stocks.png
+link: https://github.com/FranRguezCer/amzn-stocks-predictions-airflow
+linkType: repo
+tech:
+  - Python
+  - Apache Airflow
+  - Docker
+  - PostgreSQL
+featured: true
+locale: es
+---
+
+Workflow ETL de extremo a extremo orquestado por un DAG de Airflow ejecutandose en Docker. El pipeline obtiene datos de stocks de Amazon (AMZN) desde la API de Alpha Vantage, los almacena en PostgreSQL, los preprocesa, entrena un modelo Histogram Gradient Boosting Regressor y visualiza las predicciones junto con las metricas de rendimiento.
