@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../i18n/ui';
+
+const lang = 'es' as const;
+---
+<BaseLayout title="No encontrado · Francisco Rodriguez" description="La pagina que buscas no existe." lang={lang}>
+  <section class="not-found">
+    <h1>404 &mdash; No encontrado</h1>
+    <p>La pagina que buscas no existe o ha cambiado de ubicacion.</p>
+    <a class="back" href={routes[lang].home}>&larr; Volver al inicio</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found { max-inline-size: 40rem; margin-inline: auto; padding: 6rem 1.5rem; text-align: center; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+  h1 { font-size: 2rem; margin: 0; font-weight: 700; }
+  p { color: var(--color-muted); margin: 0; }
+  .back { color: var(--color-fg); font-weight: 500; text-decoration: none; }
+  .back:hover { color: var(--color-accent); }
+</style>

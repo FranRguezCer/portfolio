@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExperienceItem from '../../components/ExperienceItem.astro';
+import { t } from '../../i18n/ui';
+
+const lang = 'es' as const;
+const items = (await getCollection('experience', ({ data }) => data.locale === lang))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Experiencia · Francisco Rodriguez" description="Experiencia profesional de Francisco Rodriguez." lang={lang}>
+  <section class="experience">
+    <h1>{t(lang, 'section.experience')}</h1>
+    <div class="list">
+      {items.map((entry) => <ExperienceItem entry={entry} lang={lang} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .experience { max-inline-size: 56rem; margin-inline: auto; padding: 3rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  h1 { font-size: 2rem; margin: 0; font-weight: 700; }
+  .list { display: flex; flex-direction: column; }
+</style>
