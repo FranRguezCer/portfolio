@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'education'>;
+}
+
+const { entry } = Astro.props;
+const { degree, institution, location, startYear, endYear } = entry.data;
+const { Content } = await entry.render();
+
+const years = startYear && endYear ? `${startYear} – ${endYear}` : startYear ? `${startYear}` : endYear ? `${endYear}` : '';
+---
+<article class="education-item">
+  <header>
+    <h3>{degree}</h3>
+    <p class="meta">
+      {institution}
+      {location && <>, <span>{location}</span></>}
+      {years && <> · <span>{years}</span></>}
+    </p>
+  </header>
+  <div class="body"><Content /></div>
+</article>
+
+<style>
+  .education-item {
+    padding-block: 1.5rem;
+    border-block-end: 1px solid var(--color-border);
+  }
+  .education-item:last-child {
+    border-block-end: none;
+  }
+  h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .meta {
+    margin: 0.25rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+  .body {
+    margin-block-start: 0.75rem;
+    color: var(--color-fg);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .body :global(ul) {
+    padding-inline-start: 1.25rem;
+    margin: 0.5rem 0 0;
+  }
+</style>
