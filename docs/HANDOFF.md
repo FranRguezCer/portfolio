@@ -138,6 +138,8 @@ Implementation note: Tailwind CSS 4 is CSS-first. There is **no `tailwind.config
 
 The `@tailwindcss/vite` plugin is wired in `astro.config.mjs` as a Vite plugin (not an Astro integration). This is the correct Tailwind 4 pattern.
 
+Token naming convention: all tokens use the `--color-*` and `--font-*` prefix pattern established above. When Claude Design adds semantic variants (e.g., `--color-bg-dark`, `--color-accent-hover`) they should follow the same `--color-{role}` naming to stay consistent with existing component references.
+
 ---
 
 ## 6. Component inventory
