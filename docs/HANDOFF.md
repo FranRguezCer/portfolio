@@ -326,3 +326,5 @@ The build output goes to `dist/`. It is a flat static tree ready for GitHub Page
 ## 12. Acknowledgments
 
 Plan and execution: orchestrated by Claude Code in fan-out agents. Reviewer baseline: Codex + the owner's direct review.
+
+Wave: 6A of the portfolio refactor. Branch: `docs/handoff` off `dev`.
