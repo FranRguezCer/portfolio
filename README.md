@@ -1,68 +1,139 @@
-# Personal Portfolio Website
+# Portfolio — Francisco Rodriguez
 
-Welcome to the repository of my personal portfolio website, hosted on **GitHub Pages**. This website is designed to showcase my professional profile, projects, and CV in an organized and visually appealing manner.
+Personal portfolio site, built with Astro 5, Tailwind CSS 4, MDX content collections and TypeScript strict mode. Hosted on GitHub Pages under the `/portfolio/` subpath.
 
-## 🌐 Live Website
+Live URL (after deploy): https://franrguezcer.github.io/portfolio/
 
-You can visit the website here: [**My Portfolio**](https://FranRguezCer.github.io/portfolio/)
+## Stack
 
-## 🖼️ Preview
+- [Astro 5](https://astro.build/) — static site framework with content collections and i18n routing.
+- [Tailwind CSS 4](https://tailwindcss.com/) — CSS-first design tokens via the `@theme` directive.
+- [MDX](https://mdxjs.com/) — markdown with embeddable components, used as the content layer.
+- Zod schemas via `astro:content` — build-time validation of frontmatter.
+- TypeScript in strict mode.
+- Deployed via GitHub Actions (`withastro/action@v3`) to GitHub Pages.
 
-![Website Preview](assets/img/preview.png)
-
-## 🚀 About the Website
-
-The website serves as a central hub where you can:
-- Learn more **about me** and my professional background.
-- Explore the **projects** I’ve worked on.
-- Check out my **skills** and **education**.
-- Get in **contact** with me easily.
-- **View my Resume** full detailed resume.
-
-## 🛠️ Technologies Used
-
-- **HTML5:** For structuring the content of the website.
-- **CSS3 & Bootstrap 5:** For styling, responsive design, and layout consistency.
-- **JavaScript:** To add interactivity and manage dynamic content.
-- **GitHub Pages:** For hosting the website directly from this repository.
-
-## 📂 Project Structure
-
-```bash
-├── index.html                          # Home page (About Me)
-├── projects.html                       # Projects showcase
-├── skills.html                         # Technical skills
-├── experience.html                     # Professional experience
-├── education.html                      # Academic background
-├── contact.html                        # Contact information
-├── assets/
-│   ├── css/
-│   │   └── styles.css                  # Custom styles
-│   ├── js/
-│   │   └── scripts.js                  # JavaScript for interactivity
-│   ├── img/                            # Images and icons
-│   └── svg/                            # SVG icons
-├── lang/
-│   ├── index_en.json                   # Index text homepage
-│   ├── contact_en.json                 # Contact information section text
-│   ├── projects_en.json                # Projects section text
-│   ├── education_en.json               # Education section text
-│   ├── experience_en.json              # Experience section text
-│   └── skills_en.json                  # Skills section text
-├── assets/cv/
-│   ├── Francisco_Rodriguez_CV_en.pdf   # Resume
-└── README.md                           # Project documentation
+## Project layout
 
 ```
+.
+├── astro.config.mjs          # site, base, trailingSlash, i18n, integrations
+├── package.json              # deps + scripts
+├── tsconfig.json             # strict mode, extends astro/strict
+├── public/                   # static assets served as-is
+│   ├── cv/                   # downloadable CV PDFs
+│   ├── img/                  # favicons, og-default, apple-touch-icon
+│   ├── .nojekyll             # disable Jekyll on GitHub Pages
+│   └── robots.txt
+├── src/
+│   ├── assets/               # processed assets (photo, project images, icons)
+│   ├── components/           # 9 reusable .astro components
+│   ├── content/
+│   │   ├── pages/{en,es}/    # page intros (home, contact, ...)
+│   │   ├── projects/{en,es}/ # 1 .mdx per project
+│   │   ├── experience/{en,es}/
+│   │   ├── education/{en,es}/
+│   │   └── skills/{en,es}/
+│   ├── content.config.ts     # Zod schemas
+│   ├── i18n/ui.ts            # bilingual UI string dictionary + t() helper
+│   ├── layouts/BaseLayout.astro
+│   ├── pages/                # 7 EN pages + src/pages/es/ mirror
+│   └── styles/global.css     # Tailwind @import + design tokens
+├── docs/HANDOFF.md           # handoff brief for design iteration
+└── .github/workflows/deploy.yml
+```
 
-## 🌍 Hosting
+## Local development
 
-The website is hosted via **GitHub Pages**, ensuring easy access and seamless updates whenever the repository is modified.
+```bash
+git clone https://github.com/FranRguezCer/portfolio.git
+cd portfolio
+npm install
+npm run dev
+```
 
----
+Open http://localhost:4321/portfolio/ for English and http://localhost:4321/portfolio/es/ for Spanish.
 
-Feel free to explore the code, suggest improvements, or reach out if you have any questions!
+Available scripts:
 
-## 📄 License
+| Command             | Purpose                                  |
+| ------------------- | ---------------------------------------- |
+| `npm run dev`       | Dev server with hot reload               |
+| `npm run build`     | Produce a static build at `dist/`        |
+| `npm run preview`   | Serve the static build locally           |
+| `npx astro check`   | Type and content-schema validation       |
 
-This project is licensed under the [MIT License](LICENSE).
+## Editing content
+
+Content lives in MDX files under `src/content/<collection>/<locale>/`. Each file has YAML frontmatter validated by Zod (schemas in `src/content.config.ts`) plus a markdown body.
+
+### Add a project
+
+1. Create `src/content/projects/en/09-<slug>.mdx`:
+
+   ```mdx
+   ---
+   title: My new project
+   summary: One-paragraph summary that shows on the card.
+   order: 9
+   year: 2026
+   image: ../../../assets/projects/<slug>.png
+   link: https://github.com/FranRguezCer/<repo>
+   linkType: repo
+   tech:
+     - Python
+     - Pandas
+   featured: false
+   locale: en
+   ---
+
+   Body paragraphs describing the project. Plain markdown.
+   ```
+
+2. Drop the image at `src/assets/projects/<slug>.png` (Astro Image will generate WebP variants).
+3. Create the Spanish mirror at `src/content/projects/es/09-<slug>.mdx` with translated copy and `locale: es`.
+4. `npm run build` — Zod validates frontmatter; failures point at the file and the missing/invalid field.
+
+### Add an experience entry, education entry, or skill
+
+Same pattern as a project, against the corresponding collection (`experience`, `education`, `skills`). Frontmatter shape is enforced by the schema in `src/content.config.ts` — open it to see the fields.
+
+### Edit UI strings
+
+Short labels (nav, buttons, microcopy) live in `src/i18n/ui.ts`. Both locales are in the same file under `ui.en` and `ui.es`. Use the helper `t(locale, key)` from any component.
+
+### Add a third locale
+
+1. Add the code to `locales` in `astro.config.mjs` and to `src/i18n/ui.ts`.
+2. Update the Zod `locale` enum in `src/content.config.ts`.
+3. Mirror the `en/` content under the new locale folder per collection.
+4. Mirror `src/pages/en/*` under `src/pages/<new>/`.
+
+## Conventions
+
+- Conventional Commits (`feat`, `fix`, `refactor`, `chore`, `style`, `docs`, `ci`, ...). No emojis. No Co-Authored-By.
+- All text content in English by default; Castilian Spanish (es-ES) for the ES locale; technical terms (ML, ETL, dashboard, Data Scientist, ...) stay in English when industry-standard.
+- All external links use `target="_blank" rel="noopener noreferrer"`.
+- Decorative icons get `aria-hidden="true"`.
+- Imagery served via `astro:assets <Image>` for automatic WebP and responsive widths.
+
+## Deploying to GitHub Pages
+
+The deploy workflow `.github/workflows/deploy.yml` runs on push to `master` and manual `workflow_dispatch`. Before the first deploy:
+
+1. In the GitHub repo settings, set **Pages -> Build and deployment -> Source** to **GitHub Actions**.
+2. Merge `dev` into `master` and push.
+3. The workflow builds with Astro and deploys via `actions/deploy-pages@v4`.
+
+The workflow does not trigger on `dev` or feature branches by design.
+
+## Accessibility and performance
+
+- WCAG 2.2 AA target. Skip-to-content link in `BaseLayout`. Focus-visible styles on every interactive element.
+- Heading hierarchy is single-h1 per page. Semantic landmarks: `<header> <nav> <main> <footer>` plus `<address>` on the contact page.
+- Images use explicit dimensions to prevent layout shift; `<Image>` produces WebP responsive sources.
+- Open Graph and JSON-LD `Person` schema in `BaseLayout`. Sitemap generated by `@astrojs/sitemap`.
+
+## License
+
+Released under the [MIT License](LICENSE).
