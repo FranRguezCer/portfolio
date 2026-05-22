@@ -29,7 +29,7 @@ export const STR: Str = {
     heroLine2: 'and AI systems, in real conditions.',
     manifest: 'Data-driven, AI-powered solutions.',
     heroCta: 'Let’s talk',
-    cta: { work: 'See past cases', cv: 'Download CV', contact: 'Get in touch' },
+    cta: { work: 'See past cases', cv: 'View CV', contact: 'Get in touch' },
     sections: { work: 'A few success cases', otherLines: 'Other lines of work', experience: 'Experience', education: 'Education', stack: 'Stack', contact: 'Contact' },
     sectionSubs: {
       work: 'Recent selected works',
@@ -57,7 +57,7 @@ export const STR: Str = {
     heroLine2: 'y sistemas con IA, en condiciones reales.',
     manifest: 'Soluciones basadas en datos e impulsadas por IA.',
     heroCta: 'Hablemos',
-    cta: { work: 'Ver casos pasados', cv: 'Descargar CV', contact: 'Contacto' },
+    cta: { work: 'Ver casos pasados', cv: 'Ver CV', contact: 'Contacto' },
     sections: { work: 'Algunos casos de éxito', otherLines: 'Otras líneas de trabajo', experience: 'Experiencia', education: 'Formación', stack: 'Stack', contact: 'Contacto' },
     sectionSubs: {
       work: 'Trabajos destacados recientes',
