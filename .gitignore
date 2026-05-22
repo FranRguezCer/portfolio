@@ -30,3 +30,6 @@ dist/
 
 # claude code worktrees and agent state
 .claude/
+
+# playwright mcp test artifacts (screenshots + snapshots saved by browser_*)
+.playwright-mcp/
