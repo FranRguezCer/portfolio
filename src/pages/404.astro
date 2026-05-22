@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const basePath = '/portfolio/';
+---
+<BaseLayout
+  title="404 · Francisco Rodríguez"
+  description="Page not found."
+  route="404"
+>
+  <div class="container">
+    <section style="padding: 120px 0 160px; text-align: left;">
+      <div class="eyebrow">
+        <span class="num">/404</span><span>/</span>
+        <span data-en="Not found" data-es="No encontrado">Not found</span>
+      </div>
+      <h1 style="font-size: 120px; line-height: 0.95; letter-spacing: -0.04em; font-weight: 500; margin: 32px 0 32px;">404</h1>
+      <p
+        class="body-lg"
+        style="max-width: 48ch;"
+        data-en="This page does not exist. Maybe it was renamed, or maybe you typed the route by hand. Either way, the index has everything."
+        data-es="Esta página no existe. Quizá se renombró, o quizá escribiste la ruta a mano. En cualquier caso, el índice tiene todo."
+      >This page does not exist. Maybe it was renamed, or maybe you typed the route by hand. Either way, the index has everything.</p>
+      <div style="display: flex; gap: 12px; margin-top: 32px;">
+        <a href={basePath} class="btn">
+          <span data-en="Back home" data-es="Volver al inicio">Back home</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
