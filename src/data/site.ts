@@ -260,7 +260,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     id: '01',
     period: { en: '2025 — Present', es: '2025 — Actualidad' },
     role: { en: 'Data & AI Engineer', es: 'Data & AI Engineer' },
-    org: { en: 'GRANTECAN', es: 'GRANTECAN' },
+    org: { en: 'Gran Telescopio Canarias', es: 'Gran Telescopio Canarias' },
     loc: 'La Palma, ES',
     tag: { en: 'Scientific organisation', es: 'Entidad científica' },
     desc: {
