@@ -1,0 +1,47 @@
+---
+import { STR } from '../../data/site';
+
+const en = STR.en;
+const es = STR.es;
+---
+<div class="container">
+  <section id="contact" class="b-section" style="padding-bottom: 96px;">
+    <div
+      class="contact-band"
+      style="border: 1px solid var(--border); background: var(--surface); padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;"
+    >
+      <div>
+        <div class="eyebrow">
+          <span class="num">06</span><span>/</span>
+          <span data-en={en.sections.contact} data-es={es.sections.contact}>{en.sections.contact}</span>
+        </div>
+        <h2
+          class="display-2"
+          style="margin-top: 16px; font-size: 48px;"
+          data-en="Let’s build something together."
+          data-es="Construyamos algo juntos."
+        >Let’s build something together.</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: max-content; gap: 12px;">
+        <a href="mailto:fjrguezcer@gmail.com" class="btn" style="justify-content: space-between; gap: 24px;">
+          fjrguezcer@gmail.com
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M14 5h5v5M19 5l-9 9M5 9v10h10"/>
+          </svg>
+        </a>
+        <a
+          href="https://linkedin.com/in/franrguezcer"
+          target="_blank"
+          rel="noopener"
+          class="btn ghost"
+          style="justify-content: space-between; gap: 24px;"
+        >
+          linkedin.com/in/franrguezcer
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M14 5h5v5M19 5l-9 9M5 9v10h10"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
