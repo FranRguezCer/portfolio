@@ -1,6 +1,30 @@
 ---
-// Stub footer — full implementation lands in Wave 5 (feat/chrome-nav-footer).
+// Footer copy is language-neutral (email + social handles). The prototype's
+// FooterP accepts a lang prop but never reads it, so we drop it too.
 ---
 <div class="container">
-  <footer class="foot"></footer>
+  <footer class="foot">
+    <div>
+      <a href="#contact" style="color: var(--fg); text-decoration: none;">
+        <div
+          class="mono"
+          style="font-size: 13px; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--warm); padding-bottom: 2px;"
+        >fjrguezcer@gmail.com</div>
+      </a>
+    </div>
+    <div class="mono" style="display: flex; gap: 24px; align-items: center;">
+      <a
+        href="https://linkedin.com/in/franrguezcer"
+        target="_blank"
+        rel="noopener"
+        style="color: var(--muted); text-decoration: none;"
+      >linkedin / franrguezcer</a>
+      <a
+        href="https://github.com/FranRguezCer"
+        target="_blank"
+        rel="noopener"
+        style="color: var(--muted-soft); text-decoration: none;"
+      >github / FranRguezCer</a>
+    </div>
+  </footer>
 </div>

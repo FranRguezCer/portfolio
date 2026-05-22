@@ -1,13 +1,194 @@
 ---
-// Stub navbar — full implementation lands in Wave 5 (feat/chrome-nav-footer).
-// Kept as a placeholder so BaseLayout has its slot during Wave 4 verification.
+import { STR } from '../data/site';
+
+interface Props {
+  lang?: 'en' | 'es';
+  route?: 'home' | 'work' | '404';
+}
+const { lang = 'en', route = 'home' } = Astro.props;
+
+const basePath = '/portfolio/';
+
+interface NavItem {
+  id: 'home' | 'work' | 'stack' | 'experience' | 'education' | 'contact';
+  /** Anchor id on the home page. Null means the home route itself. */
+  anchor: string | null;
+}
+
+const navItems: NavItem[] = [
+  { id: 'home', anchor: null },
+  { id: 'work', anchor: 'sistemas-destacados' },
+  { id: 'stack', anchor: 'stack' },
+  { id: 'experience', anchor: 'experience' },
+  { id: 'education', anchor: 'education' },
+  { id: 'contact', anchor: 'contact' },
+];
+
+// Pre-rendered active state — scrollspy.ts takes over once mounted, but
+// this keeps the navbar visually correct on first paint for work-case pages.
+const initialActive: NavItem['id'] | 'none' =
+  route === 'work' ? 'work' :
+  route === 'home' ? 'home' :
+  'none';
+
+const initialLang = lang;
 ---
 <div class="nav-shell">
   <div class="container">
     <nav class="nav" aria-label="Primary">
-      <div class="brand">
+      <a href={basePath} class="brand" style="text-decoration: none; color: inherit;">
         <span class="brand-mark mono">FR</span>
         <span>Francisco Rodríguez</span>
+      </a>
+
+      <ul>
+        {navItems.map((n) => {
+          const enLabel = STR.en.nav[n.id];
+          const esLabel = STR.es.nav[n.id];
+          const initialLabel = initialLang === 'es' ? esLabel : enLabel;
+          const isActive = initialActive === n.id;
+          const href = n.anchor === null ? basePath : `${basePath}#${n.anchor}`;
+          return (
+            <li>
+              <a
+                href={href}
+                data-spy={n.id}
+                class={isActive ? 'active' : undefined}
+                data-en={enLabel}
+                data-es={esLabel}
+              >{initialLabel}</a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div class="end">
+        <!-- Segmented language toggle — lang.ts wires the clicks and the
+             .on state is reapplied each time the language changes. -->
+        <div class="seg mono" role="group" aria-label="Language">
+          <button
+            type="button"
+            data-lang="en"
+            class={initialLang === 'en' ? 'on' : undefined}
+            data-tip="English"
+            data-tip-en="English"
+            data-tip-es="Cambiar a inglés"
+          >EN</button>
+          <button
+            type="button"
+            data-lang="es"
+            class={initialLang === 'es' ? 'on' : undefined}
+            data-tip="Switch to Spanish"
+            data-tip-en="Switch to Spanish"
+            data-tip-es="Español"
+          >ES</button>
+        </div>
+
+        <!-- Theme button. Both icons render; CSS hides one based on
+             body[data-theme]. theme.ts manages the click. -->
+        <button
+          id="theme-toggle"
+          class="theme-btn"
+          type="button"
+          data-tip="Dark mode"
+          data-tip-en="Dark mode"
+          data-tip-es="Modo oscuro"
+          aria-label="Toggle theme"
+          data-aria-en="Toggle theme"
+          data-aria-es="Cambiar tema"
+        >
+          <svg
+            class="theme-icon-moon"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M21 12.8A9 9 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z" />
+          </svg>
+          <svg
+            class="theme-icon-sun"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5" />
+          </svg>
+        </button>
+
+        <!-- Accessibility panel button + panel. The panel itself sits
+             absolutely positioned below the button via CSS .a11y-panel
+             from global.css. a11y.ts owns all interactive state. -->
+        <div class="a11y-wrap">
+          <button
+            id="a11y-toggle"
+            class="a11y-btn"
+            type="button"
+            data-active="0"
+            data-tip="Accessibility"
+            data-tip-en="Accessibility"
+            data-tip-es="Accesibilidad"
+            aria-label="Accessibility controls"
+            data-aria-en="Accessibility controls"
+            data-aria-es="Controles de accesibilidad"
+            aria-expanded="false"
+            aria-controls="a11y-panel"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <circle cx="12" cy="4.5" r="1.5" />
+              <path d="M5 8h14M9 8v4l-2 8M15 8v4l2 8M9 12h6" />
+            </svg>
+          </button>
+
+          <div id="a11y-panel" class="a11y-panel" role="dialog" aria-label="Accessibility" hidden>
+            <h3>
+              <span data-en="Accessibility" data-es="Accesibilidad">Accessibility</span>
+              <button id="a11y-close" type="button" aria-label="Close" data-aria-en="Close" data-aria-es="Cerrar">✕</button>
+            </h3>
+
+            <div class="a11y-row">
+              <div class="lbl" data-en="Font size" data-es="Tamaño de fuente">Font size</div>
+              <div class="a11y-seg">
+                <button type="button" data-a11y-font="md" class="on">A</button>
+                <button type="button" data-a11y-font="lg" style="font-size: 14px;">A</button>
+                <button type="button" data-a11y-font="xl" style="font-size: 16px;">A</button>
+              </div>
+            </div>
+
+            <div class="a11y-row">
+              <div class="lbl" data-en="Cursor magnifier" data-es="Lupa de cursor">Cursor magnifier</div>
+              <button id="a11y-lens-toggle" type="button" class="a11y-toggle" data-en="Off" data-es="Desactivado">Off</button>
+            </div>
+
+            <div class="a11y-row">
+              <div class="lbl" data-en="Colorblind filter" data-es="Filtro daltonismo">Colorblind filter</div>
+              <select id="a11y-cb-select" class="a11y-select">
+                <option value="none" data-en="None" data-es="Ninguno">None</option>
+                <option value="protanopia">Protanopia</option>
+                <option value="deuteranopia">Deuteranopia</option>
+                <option value="tritanopia">Tritanopia</option>
+                <option value="achromatopsia" data-en="Achromatopsia" data-es="Acromatopsia">Achromatopsia</option>
+              </select>
+            </div>
+
+            <div class="a11y-row">
+              <div class="lbl" data-en="Cursor halo" data-es="Halo del cursor">Cursor halo</div>
+              <button id="a11y-halo-toggle" type="button" class="a11y-toggle" data-en="Off" data-es="Desactivado">Off</button>
+            </div>
+
+            <div id="a11y-reset-row" class="a11y-row" style="display: none; justify-content: flex-end;">
+              <button id="a11y-reset" type="button" class="a11y-toggle" data-en="Reset" data-es="Restablecer">Reset</button>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   </div>
