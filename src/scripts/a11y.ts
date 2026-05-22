@@ -79,7 +79,14 @@ function applyLens(on: boolean): void {
     const app = document.getElementById('app');
     if (!app) return;
     inner.innerHTML = '';
-    inner.appendChild(app.cloneNode(true));
+    const cloned = app.cloneNode(true) as HTMLElement;
+    // Strip ids so the clone doesn't fight the originals (#a11y-cb-select,
+    // #theme-toggle, #a11y-panel, etc.). Clones are pointer-events:none so
+    // they were already non-interactive, but unique-id discipline matters
+    // for a11y tools and automated selectors too.
+    cloned.removeAttribute('id');
+    cloned.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+    inner.appendChild(cloned);
   };
   reclone();
   wrap.appendChild(inner);
