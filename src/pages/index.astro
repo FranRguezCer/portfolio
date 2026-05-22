@@ -1,28 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-// Wave 4 placeholder home — verifies the chrome wiring while the real long-
-// scroll sections are still being built. Wave 6 replaces this with Hero +
-// WorkCards + OtherLines + StackMarquee + Experience + Education + Contact
-// + ClosingBanner.
+import Hero from '../components/sections/Hero.astro';
+import WorkCards from '../components/sections/WorkCards.astro';
+import OtherLines from '../components/sections/OtherLines.astro';
+import StackMarquee from '../components/sections/StackMarquee.astro';
+import Experience from '../components/sections/Experience.astro';
+import Education from '../components/sections/Education.astro';
+import Contact from '../components/sections/Contact.astro';
+import ClosingBanner from '../components/sections/ClosingBanner.astro';
 ---
 <BaseLayout
   title="Francisco Rodríguez · Data & AI Engineer"
   description="Francisco Rodríguez — Data & AI Engineer. Selected systems, transversal contributions, stack, experience and education. Based in La Palma, Canarias."
   route="home"
 >
-  <div class="container">
-    <section style="padding: 80px 0;">
-      <div class="eyebrow">
-        <span class="num">W4</span><span>/</span><span>Design system</span>
-      </div>
-      <h1 class="display" style="margin-top: 24px;">Wiring up.</h1>
-      <p class="body-lg" style="margin-top: 24px; max-width: 60ch;">
-        Fonts loaded, tokens applied, scripts mounted. The real sections
-        (hero, work cases, stack marquee, experience, education, contact,
-        banner) land in Wave 6. Toggle the theme on the navbar to confirm
-        the palette flip.
-      </p>
-    </section>
-  </div>
+  <Hero />
+  <WorkCards />
+  <OtherLines />
+  <StackMarquee />
+  <Experience />
+  <Education />
+  <Contact />
+  <ClosingBanner />
 </BaseLayout>
