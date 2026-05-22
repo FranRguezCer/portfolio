@@ -1,0 +1,51 @@
+---
+import { STR, OTHER_LINES } from '../../data/site';
+
+const en = STR.en;
+const es = STR.es;
+---
+<div class="container">
+  <section id="aportaciones-transversales" class="b-section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">
+          <span class="num">02</span><span>/</span>
+          <span data-en={en.sectionSubs.otherLines} data-es={es.sectionSubs.otherLines}>{en.sectionSubs.otherLines}</span>
+        </div>
+        <h2 class="h1" style="margin-top: 12px;" data-en={en.sections.otherLines} data-es={es.sections.otherLines}>{en.sections.otherLines}</h2>
+      </div>
+    </div>
+    <p
+      class="body"
+      style="max-width: 64ch; margin-bottom: 32px;"
+      data-en="Beyond the main case studies, several transversal lines of work in the engineering area:"
+      data-es="Más allá de los casos principales, varias líneas de trabajo transversales en el área de ingeniería:"
+    >Beyond the main case studies, several transversal lines of work in the engineering area:</p>
+    <div
+      class="home-grid-3"
+      style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline);"
+    >
+      {OTHER_LINES.map((o) => (
+        <div style="background: var(--bg); padding: 32px 28px; display: flex; flex-direction: column; gap: 12px; min-height: 320px;">
+          <div class="mono" style="font-size: 11px; color: var(--warm);">{o.id}</div>
+          <div
+            style="font-size: 19px; font-weight: 500; letter-spacing: -0.005em; line-height: 1.25;"
+            data-en={o.title.en}
+            data-es={o.title.es}
+          >{o.title.en}</div>
+          <p
+            class="body"
+            style="font-size: 14px; line-height: 1.6; margin: 0;"
+            data-en={o.body.en}
+            data-es={o.body.es}
+          >{o.body.en}</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 12px;">
+            {o.chips.map((c) => (
+              <span class="chip" style="font-size: 10px;">{c}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>

@@ -1,0 +1,49 @@
+---
+import { STR, WORK } from '../../data/site';
+
+const en = STR.en;
+const es = STR.es;
+const basePath = '/portfolio';
+---
+<div class="container">
+  <section id="sistemas-destacados" class="b-section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">
+          <span class="num">01</span><span>/</span>
+          <span data-en={en.sectionSubs.work} data-es={es.sectionSubs.work}>{en.sectionSubs.work}</span>
+        </div>
+        <h2 class="h1" style="margin-top: 12px;" data-en={en.sections.work} data-es={es.sections.work}>{en.sections.work}</h2>
+      </div>
+    </div>
+    <div style="display: grid; gap: 16px;">
+      {WORK.map((w) => (
+        <a href={`${basePath}/work/${w.slug}/`} class="work-card">
+          <div style="display: grid; grid-template-columns: 80px 1fr 24px; gap: 32px; align-items: start;">
+            <div class="mono" style="font-size: 12px; color: var(--warm); padding-top: 4px;">{w.id}</div>
+            <div>
+              <div
+                class="mono"
+                style="font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px;"
+                data-en={w.domain.en}
+                data-es={w.domain.es}
+              >{w.domain.en}</div>
+              <div
+                style="font-size: 24px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.15;"
+                data-en={w.title.en}
+                data-es={w.title.es}
+              >{w.title.en}</div>
+              <p
+                class="body"
+                style="font-size: 15px; margin-top: 12px; max-width: 70ch; color: var(--fg-soft);"
+                data-en={w.oneLiner.en}
+                data-es={w.oneLiner.es}
+              >{w.oneLiner.en}</p>
+            </div>
+            <div class="work-card-arrow" style="font-family: 'JetBrains Mono', monospace; font-size: 16px; color: var(--muted); text-align: right;">→</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</div>

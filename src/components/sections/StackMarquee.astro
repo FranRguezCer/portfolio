@@ -1,0 +1,46 @@
+---
+import { STR, HOME_STACK } from '../../data/site';
+
+const en = STR.en;
+const es = STR.es;
+// Render the marquee track twice so the loop is seamless; the second half
+// is aria-hidden because it duplicates the first for animation purposes.
+const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.map((s) => ({ s, hidden: true }))];
+---
+<div class="container">
+  <section id="stack" class="b-section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">
+          <span class="num">03</span><span>/</span>
+          <span data-en={en.sectionSubs.stack} data-es={es.sectionSubs.stack}>{en.sectionSubs.stack}</span>
+        </div>
+        <h2 class="h1" style="margin-top: 12px;">Stack</h2>
+      </div>
+    </div>
+    <div
+      class="tech-marquee"
+      aria-label="Technologies in use"
+      data-aria-en="Technologies in use"
+      data-aria-es="Tecnologías en uso"
+    >
+      <div class="tech-marquee-track">
+        {tiles.map(({ s, hidden }) => (
+          <div class="tech-tile" aria-hidden={hidden ? 'true' : 'false'}>
+            {s.slug ? (
+              <span
+                class="stack-glyph"
+                role="img"
+                aria-label={s.label}
+                style={`-webkit-mask-image: url(https://cdn.simpleicons.org/${s.slug}/black); mask-image: url(https://cdn.simpleicons.org/${s.slug}/black);`}
+              />
+            ) : (
+              <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
+            )}
+            <div class="name">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</div>
