@@ -1,47 +1,86 @@
-# Portfolio — Francisco Rodriguez
+# Portfolio — Francisco Rodríguez
 
-Personal portfolio site, built with Astro 5, Tailwind CSS 4, MDX content collections and TypeScript strict mode. Hosted on GitHub Pages under the `/portfolio/` subpath.
+Personal portfolio site, built with Astro 5 and plain CSS over a single typed bilingual data module. Hosted on GitHub Pages under the `/portfolio/` subpath.
 
 Live URL (after deploy): https://franrguezcer.github.io/portfolio/
 
+## Design source
+
+The visual surface is the verbatim output of a Claude Design handoff (`design_handoff_portfolio`). Tokens, copy, layout, scrollspy and accessibility behaviour come from `prototype.html` + `prototype.jsx` + `prototype-pages.jsx` + `mocks-shared.jsx` + `styles.css`. The handoff README declares the copy final ("do not paraphrase") so the data module is a 1:1 port, not a rewrite.
+
 ## Stack
 
-- [Astro 5](https://astro.build/) — static site framework with content collections and i18n routing.
-- [Tailwind CSS 4](https://tailwindcss.com/) — CSS-first design tokens via the `@theme` directive.
-- [MDX](https://mdxjs.com/) — markdown with embeddable components, used as the content layer.
-- Zod schemas via `astro:content` — build-time validation of frontmatter.
-- TypeScript in strict mode.
-- Deployed via GitHub Actions (`withastro/action@v3`) to GitHub Pages.
+- [Astro 5](https://astro.build/) — static site framework, base path `/portfolio/`, trailing slashes always.
+- Plain CSS with `:root` design tokens — no Tailwind, no preprocessor. Light + dark themes via `[data-theme]`.
+- TypeScript in strict mode for the runtime scripts and the data module.
+- Plus Jakarta Sans + JetBrains Mono via Google Fonts (preconnect + display=swap).
+- Simple Icons SVG masks rendered at runtime from `cdn.simpleicons.org`.
+- Deployed via GitHub Actions (`.github/workflows/deploy.yml`) to GitHub Pages.
 
-## Project layout
+## Architecture
+
+Single-page long-scroll home with anchor sections (`#sistemas-destacados`, `#stack`, `#experience`, `#education`, `#contact`) plus a dynamic case-detail route under `/work/<slug>/` (3 cases). Language is a **runtime toggle** persisted in `localStorage.pp-lang`; the URL never changes when you switch EN/ES.
+
+### Project layout
 
 ```
 .
-├── astro.config.mjs          # site, base, trailingSlash, i18n, integrations
-├── package.json              # deps + scripts
-├── tsconfig.json             # strict mode, extends astro/strict
-├── public/                   # static assets served as-is
-│   ├── cv/                   # downloadable CV PDFs
-│   ├── img/                  # favicons, og-default, apple-touch-icon
-│   ├── .nojekyll             # disable Jekyll on GitHub Pages
+├── astro.config.mjs                     # site, base, trailingSlash, integrations
+├── package.json                         # astro + @astrojs/mdx + @astrojs/sitemap only
+├── tsconfig.json                        # astro/strict
+├── docs/HANDOFF.md                      # pre-handoff brief, kept for history
+├── public/
+│   ├── cv/                              # downloadable CV PDFs
+│   ├── img/                             # favicons, og-default, banner-roque-muchachos
+│   ├── .nojekyll
 │   └── robots.txt
 ├── src/
-│   ├── assets/               # processed assets (photo, project images, icons)
-│   ├── components/           # 9 reusable .astro components
-│   ├── content/
-│   │   ├── pages/{en,es}/    # page intros (home, contact, ...)
-│   │   ├── projects/{en,es}/ # 1 .mdx per project
-│   │   ├── experience/{en,es}/
-│   │   ├── education/{en,es}/
-│   │   └── skills/{en,es}/
-│   ├── content.config.ts     # Zod schemas
-│   ├── i18n/ui.ts            # bilingual UI string dictionary + t() helper
-│   ├── layouts/BaseLayout.astro
-│   ├── pages/                # 7 EN pages + src/pages/es/ mirror
-│   └── styles/global.css     # Tailwind @import + design tokens
-├── docs/HANDOFF.md           # handoff brief for design iteration
-└── .github/workflows/deploy.yml
+│   ├── data/
+│   │   ├── site.ts                      # STR, WORK, OTHER_LINES, EXPERIENCE, EDUCATION, HOME_STACK
+│   │   └── types.ts                     # Bilingual<T> + section interfaces
+│   ├── layouts/BaseLayout.astro         # head, fonts, JSON-LD, init script, slots
+│   ├── components/
+│   │   ├── Navbar.astro                 # scrollspy nav + lang/theme/a11y toggles
+│   │   ├── Footer.astro                 # email + linkedin + github
+│   │   ├── A11ySvgFilters.astro         # colorblind feColorMatrix filters
+│   │   ├── BackToTopButton.astro        # fixed button with bilingual tooltip
+│   │   └── sections/                    # Hero, WorkCards, OtherLines, StackMarquee,
+│   │                                    # Experience, Education, Contact, ClosingBanner
+│   ├── scripts/
+│   │   ├── theme.ts                     # pp-theme persistence + icon swap
+│   │   ├── lang.ts                      # pp-lang persistence + DOM swap
+│   │   ├── scrollspy.ts                 # active nav pin based on viewport probe
+│   │   ├── a11y.ts                      # font / lens / colorblind / halo controls
+│   │   └── backToTop.ts                 # 480px reveal threshold + smooth scroll
+│   ├── styles/global.css                # design tokens + chrome + sections + a11y
+│   └── pages/
+│       ├── index.astro                  # long-scroll home
+│       ├── work/[slug].astro            # case detail (getStaticPaths from WORK)
+│       └── 404.astro
+└── .github/workflows/deploy.yml         # push to master → GitHub Pages
 ```
+
+### Runtime contract
+
+The HTML is pre-rendered in English. Every translatable element carries `data-en` / `data-es` (and `data-tip-en` / `data-tip-es` for tooltips, `data-aria-en` / `data-aria-es` for aria-labels). On boot:
+
+1. An inline `<script>` in `<head>` reads `pp-theme` from localStorage and sets `<html data-theme>` before the body paints — no flash of wrong palette.
+2. Once the body is parsed, `theme.ts` mirrors the theme onto `<body>` and wires the navbar `#theme-toggle`.
+3. `lang.ts` reads `pp-lang`, sets `<body data-lang>` and walks `[data-en][data-es]` (and the tip / aria variants) swapping content in place. Wires the segmented `EN / ES` buttons.
+4. `scrollspy.ts` tracks the five home anchors with a manual scroll probe at `NAV_OFFSET + 24` (80 + 24) and pins the matching nav item. On `/work/<slug>/` it force-pins **Work**.
+5. `a11y.ts` reads the four `a11y-*` keys, applies font scaling (via CSS `zoom` on `#app`), colorblind filter (SVG `feColorMatrix` wrapping `#app`), cursor magnifier (DOM clone) and cursor halo.
+6. `backToTop.ts` shows the button past `480px` of scroll, smooth-scrolls to top, clears any hash from the URL.
+
+### localStorage keys
+
+| Key            | Purpose                                         | Default   |
+| -------------- | ----------------------------------------------- | --------- |
+| `pp-theme`     | `'light'` or `'dark'`                           | `'light'` |
+| `pp-lang`      | `'en'` or `'es'`                                | `'en'`    |
+| `a11y-font`    | `'md'`, `'lg'` or `'xl'` (CSS zoom on `#app`)   | `'md'`    |
+| `a11y-lens`    | `'1'` enables the cursor magnifier              | unset     |
+| `a11y-cb`      | `'none'`, `'protanopia'`, `'deuteranopia'`, `'tritanopia'`, `'achromatopsia'` | `'none'`  |
+| `a11y-halo`    | `'1'` enables the cursor halo                   | unset     |
 
 ## Local development
 
@@ -52,76 +91,51 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:4321/portfolio/ for English and http://localhost:4321/portfolio/es/ for Spanish.
+Open http://localhost:4321/portfolio/. The same URL serves both languages — toggle with the `EN / ES` chip in the navbar.
 
 Available scripts:
 
-| Command             | Purpose                                  |
-| ------------------- | ---------------------------------------- |
-| `npm run dev`       | Dev server with hot reload               |
-| `npm run build`     | Produce a static build at `dist/`        |
-| `npm run preview`   | Serve the static build locally           |
-| `npx astro check`   | Type and content-schema validation       |
+| Command            | Purpose                                  |
+| ------------------ | ---------------------------------------- |
+| `npm run dev`      | Dev server with hot reload               |
+| `npm run build`    | Produce a static build at `dist/`        |
+| `npm run preview`  | Serve the static build locally           |
+| `npx astro check`  | Type-check Astro + TS                    |
 
 ## Editing content
 
-Content lives in MDX files under `src/content/<collection>/<locale>/`. Each file has YAML frontmatter validated by Zod (schemas in `src/content.config.ts`) plus a markdown body.
+All bilingual copy lives in `src/data/site.ts` as exported `const`s with strict types from `src/data/types.ts`. The handoff treats the copy as final, so edit it only when the design source changes upstream.
 
-### Add a project
+### Add a case study
 
-1. Create `src/content/projects/en/09-<slug>.mdx`:
+1. Append a new entry to `WORK` in `src/data/site.ts` with `id`, `slug`, `title`, `domain`, `oneLiner`, `body`, `notesLabel`, `notes` (each as `{ en, es }` where the type calls for it) and `stack`.
+2. `npm run build` — Astro picks up the new slug through `getStaticPaths` and emits `/work/<slug>/index.html` automatically.
 
-   ```mdx
-   ---
-   title: My new project
-   summary: One-paragraph summary that shows on the card.
-   order: 9
-   year: 2026
-   image: ../../../assets/projects/<slug>.png
-   link: https://github.com/FranRguezCer/<repo>
-   linkType: repo
-   tech:
-     - Python
-     - Pandas
-   featured: false
-   locale: en
-   ---
+### Add an experience or education entry
 
-   Body paragraphs describing the project. Plain markdown.
-   ```
+Add an `ExperienceEntry` or `EducationEntry` (see `src/data/types.ts`) to the corresponding array. Bilingual fields are typed; TypeScript flags any missing translation at build time.
 
-2. Drop the image at `src/assets/projects/<slug>.png` (Astro Image will generate WebP variants).
-3. Create the Spanish mirror at `src/content/projects/es/09-<slug>.mdx` with translated copy and `locale: es`.
-4. `npm run build` — Zod validates frontmatter; failures point at the file and the missing/invalid field.
+### Tune the stack carousel
 
-### Add an experience entry, education entry, or skill
+`HOME_STACK` lists 14 technologies. Each entry has a `label` and a `slug` that maps to a Simple Icons identifier (e.g. `apachekafka`). Set `slug` to `null` for a mono-text fallback tile.
 
-Same pattern as a project, against the corresponding collection (`experience`, `education`, `skills`). Frontmatter shape is enforced by the schema in `src/content.config.ts` — open it to see the fields.
+### Adjust UI / chrome strings
 
-### Edit UI strings
-
-Short labels (nav, buttons, microcopy) live in `src/i18n/ui.ts`. Both locales are in the same file under `ui.en` and `ui.es`. Use the helper `t(locale, key)` from any component.
-
-### Add a third locale
-
-1. Add the code to `locales` in `astro.config.mjs` and to `src/i18n/ui.ts`.
-2. Update the Zod `locale` enum in `src/content.config.ts`.
-3. Mirror the `en/` content under the new locale folder per collection.
-4. Mirror `src/pages/en/*` under `src/pages/<new>/`.
+Navbar labels, section headers, eyebrow text, profile card labels and microcopy are co-located with the markup that uses them — search for `data-en` / `data-es` in `src/components/`. The site dictionary (`STR` in `src/data/site.ts`) is the source for everything that the prototype emits from `STR[lang]`.
 
 ## Conventions
 
-- Conventional Commits (`feat`, `fix`, `refactor`, `chore`, `style`, `docs`, `ci`, ...). No emojis. No Co-Authored-By.
-- All text content in English by default; Castilian Spanish (es-ES) for the ES locale; technical terms (ML, ETL, dashboard, Data Scientist, ...) stay in English when industry-standard.
-- All external links use `target="_blank" rel="noopener noreferrer"`.
-- Decorative icons get `aria-hidden="true"`.
-- Imagery served via `astro:assets <Image>` for automatic WebP and responsive widths.
+- Conventional Commits (`feat`, `fix`, `refactor`, `chore`, `style`, `docs`, `ci`, ...). No emojis. No Co-Authored-By trailers.
+- Castilian Spanish (es-ES) for the ES locale. Technical terms (ML, ETL, dashboard, Data Scientist, ...) stay in English when industry-standard.
+- All external links use `target="_blank" rel="noopener"`.
+- Decorative icons carry `aria-hidden="true"`.
+- All UI text that differs between languages MUST be wired through `data-en` / `data-es` (and tip / aria variants if applicable). Anything else won't swap at runtime.
 
 ## Deploying to GitHub Pages
 
-The deploy workflow `.github/workflows/deploy.yml` runs on push to `master` and manual `workflow_dispatch`. Before the first deploy:
+The deploy workflow `.github/workflows/deploy.yml` runs on push to `master` and manual `workflow_dispatch`:
 
-1. In the GitHub repo settings, set **Pages -> Build and deployment -> Source** to **GitHub Actions**.
+1. In the GitHub repo settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
 2. Merge `dev` into `master` and push.
 3. The workflow builds with Astro and deploys via `actions/deploy-pages@v4`.
 
@@ -129,10 +143,11 @@ The workflow does not trigger on `dev` or feature branches by design.
 
 ## Accessibility and performance
 
-- WCAG 2.2 AA target. Skip-to-content link in `BaseLayout`. Focus-visible styles on every interactive element.
-- Heading hierarchy is single-h1 per page. Semantic landmarks: `<header> <nav> <main> <footer>` plus `<address>` on the contact page.
-- Images use explicit dimensions to prevent layout shift; `<Image>` produces WebP responsive sources.
-- Open Graph and JSON-LD `Person` schema in `BaseLayout`. Sitemap generated by `@astrojs/sitemap`.
+- WCAG 2.2 AA target. Focus-visible warm outline on every interactive element.
+- Heading hierarchy is single-h1 per page. Semantic landmarks: `<nav>` + `<main>` + `<footer>` + `<aside>` on the hero side card.
+- Accessibility panel exposes font scaling, simulated colorblind filters, cursor magnifier and cursor halo, all persisted to localStorage.
+- All animations respect `prefers-reduced-motion: reduce` (marquee, back-to-top bob, route transitions, smooth scroll).
+- Open Graph + JSON-LD `Person` schema in `BaseLayout`. Sitemap generated by `@astrojs/sitemap`.
 
 ## License
 
