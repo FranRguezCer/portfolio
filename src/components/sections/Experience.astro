@@ -1,0 +1,47 @@
+---
+import { STR, EXPERIENCE } from '../../data/site';
+
+const en = STR.en;
+const es = STR.es;
+const cvHref = '/portfolio/cv/FRC_CV_Software_Engineer_Data_Scientist.pdf';
+---
+<div class="container">
+  <section id="experience" class="b-section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">
+          <span class="num">04</span><span>/</span>
+          <span data-en={en.sectionSubs.experience} data-es={es.sectionSubs.experience}>{en.sectionSubs.experience}</span>
+        </div>
+        <h2 class="h1" style="margin-top: 12px;" data-en={en.sections.experience} data-es={es.sections.experience}>{en.sections.experience}</h2>
+      </div>
+      <a href={cvHref} class="btn ghost" download>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 4v12m-5-5 5 5 5-5M4 20h16"/>
+        </svg>
+        <span data-en="Download CV" data-es="Descargar CV">Download CV</span>
+      </a>
+    </div>
+    <div class="cv-list" style="margin-top: 24px;">
+      {EXPERIENCE.map((e) => (
+        <div class="cv-row" style="grid-template-columns: 160px 1fr;">
+          <div class="date">
+            <div data-en={e.period.en} data-es={e.period.es}>{e.period.en}</div>
+          </div>
+          <div>
+            <div class="role" data-en={e.role.en} data-es={e.role.es}>{e.role.en}</div>
+            <div class="org">
+              <span data-en={e.org.en} data-es={e.org.es}>{e.org.en}</span> · {e.loc}
+            </div>
+            <p class="desc" data-en={e.desc.en} data-es={e.desc.es}>{e.desc.en}</p>
+            <ul class="bullets">
+              {e.bullets.en.map((bEn, i) => (
+                <li data-en={bEn} data-es={e.bullets.es[i]}>{bEn}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>
