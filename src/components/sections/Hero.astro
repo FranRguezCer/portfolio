@@ -1,0 +1,70 @@
+---
+import { STR } from '../../data/site';
+
+const en = STR.en;
+const es = STR.es;
+// CV anchor — the prototype uses '#' as a placeholder; we adapt it to the
+// existing CV PDF that ships in /portfolio/cv/. If the owner adds a Spanish
+// CV later, both languages can resolve to different files via data-href.
+const cvHref = '/portfolio/cv/FRC_CV_Software_Engineer_Data_Scientist.pdf';
+---
+<div class="container">
+  <section class="b-hero">
+    <div>
+      <h1 class="name">Francisco<br />Rodríguez.</h1>
+      <div class="role-block" style="margin-top: 32px;">
+        <div
+          class="mono"
+          style="font-size: 12px; color: var(--warm); letter-spacing: 0.06em; text-transform: uppercase;"
+        >Data &amp; AI Engineer</div>
+        <p
+          class="body-lg"
+          style="margin-top: 12px; max-width: 52ch;"
+          data-en={en.manifest}
+          data-es={es.manifest}
+        >{en.manifest}</p>
+      </div>
+      <div class="ctas">
+        <a href="#contact" class="btn">
+          <span data-en={en.heroCta} data-es={es.heroCta}>{en.heroCta}</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#sistemas-destacados" class="btn ghost" data-en={en.cta.work} data-es={es.cta.work}>{en.cta.work}</a>
+        <a href={cvHref} class="btn ghost" download>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M12 4v12m-5-5 5 5 5-5M4 20h16"/>
+          </svg>
+          <span data-en={en.cta.cv} data-es={es.cta.cv}>{en.cta.cv}</span>
+        </a>
+      </div>
+    </div>
+
+    <aside class="side-card">
+      <div class="eyebrow">
+        <span class="num">00</span><span>/</span><span data-en="Profile" data-es="Perfil">Profile</span>
+      </div>
+      <div>
+        <div class="stat-row">
+          <span class="mono" style="font-size: 11px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;" data-en="Based in" data-es="Ubicación">Based in</span>
+          <span class="mono v">La Palma, Canarias</span>
+        </div>
+        <div class="stat-row">
+          <span class="mono" style="font-size: 11px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;" data-en="Background" data-es="Formación">Background</span>
+          <span class="mono v">MSc (MECES 3)</span>
+        </div>
+        <div class="stat-row">
+          <span class="mono" style="font-size: 11px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;" data-en="Languages" data-es="Idiomas">Languages</span>
+          <span class="mono v">EN · ES</span>
+        </div>
+        <div class="stat-row">
+          <span class="mono" style="font-size: 11px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;" data-en="Focus" data-es="Foco">Focus</span>
+          <span class="mono v">Data · AI</span>
+        </div>
+      </div>
+      <div style="border-top: 1px solid var(--hairline); padding-top: 16px; margin-top: 4px;">
+        <div class="mono" style="font-size: 11px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;" data-en="Reach" data-es="Contacto">Reach</div>
+        <a href="#contact" class="mono" style="font-size: 13px; margin-top: 8px; display: block; color: var(--fg); text-decoration: none;">fjrguezcer@gmail.com</a>
+      </div>
+    </aside>
+  </section>
+</div>
