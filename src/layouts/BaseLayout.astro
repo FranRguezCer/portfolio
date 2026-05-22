@@ -1,0 +1,130 @@
+---
+import '../styles/global.css';
+import A11ySvgFilters from '../components/A11ySvgFilters.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import BackToTopButton from '../components/BackToTopButton.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Route key consumed by scrollspy + canonical link. */
+  route?: 'home' | 'work' | '404';
+  /** Pre-rendered language. Runtime toggle still swaps via JS — this only sets
+   *  the initial <html lang> and the static HTML's data-en/data-es defaults. */
+  lang?: 'en' | 'es';
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  route = 'home',
+  lang = 'en',
+  ogImage = '/portfolio/img/og-default.png',
+  canonical,
+} = Astro.props;
+
+const siteUrl = 'https://franrguezcer.github.io';
+const basePath = '/portfolio';
+const canonicalUrl = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Francisco Rodríguez',
+  jobTitle: 'Data & AI Engineer',
+  url: `${siteUrl}${basePath}/`,
+  sameAs: [
+    'https://linkedin.com/in/franrguezcer',
+    'https://github.com/FranRguezCer',
+  ],
+};
+---
+<!doctype html>
+<html lang={lang} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" type="image/svg+xml" href={`${basePath}/img/favicon.svg`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${basePath}/img/favicon-16x16.png`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${basePath}/img/favicon-32x32.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${basePath}/img/apple-touch-icon.png`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    <!-- Boot: read persisted theme + lang from localStorage and apply BEFORE
+         the body paints, so the user never sees a flash of the wrong palette
+         or English text on what should be a Spanish-first visit. -->
+    <script is:inline>
+      (function bootPaint() {
+        try {
+          var theme = localStorage.getItem('pp-theme');
+          if (theme !== 'light' && theme !== 'dark') theme = 'light';
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.dataset.preTheme = theme;
+          document.documentElement.dataset.preLang =
+            localStorage.getItem('pp-lang') === 'es' ? 'es' : 'en';
+          var fs = localStorage.getItem('a11y-font');
+          if (fs === 'lg' || fs === 'xl') {
+            document.documentElement.dataset.preA11yText = fs;
+          }
+          var cb = localStorage.getItem('a11y-cb');
+          if (cb && cb !== 'none') {
+            document.documentElement.dataset.preA11yCb = cb;
+          }
+        } catch (_) { /* ignore */ }
+      })();
+    </script>
+  </head>
+  <body data-theme="light" data-lang={lang} data-route={route}>
+    <A11ySvgFilters />
+    <div id="app" class="page">
+      <Navbar route={route} lang={lang} />
+      <div class="route-shell">
+        <slot />
+      </div>
+      <Footer lang={lang} />
+    </div>
+    <BackToTopButton />
+
+    <script>
+      // Order matters: theme writes body[data-theme], lang writes
+      // body[data-lang] and rewrites textContent / tooltips, scrollspy
+      // pins the navbar based on body[data-route], a11y reads the four
+      // persisted attributes, back-to-top wires the floating button.
+      import '../scripts/theme.ts';
+      import '../scripts/lang.ts';
+      import '../scripts/scrollspy.ts';
+      import '../scripts/a11y.ts';
+      import '../scripts/backToTop.ts';
+    </script>
+  </body>
+</html>
