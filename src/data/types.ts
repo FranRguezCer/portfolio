@@ -105,7 +105,7 @@ export interface EducationEntry {
   period: Bilingual<string>;
   title: Bilingual<string>;
   org: Bilingual<string>;
-  loc: string;
+  loc?: string;
   tag: Bilingual<string>;
   desc: Bilingual<string>;
 }
