@@ -3,10 +3,8 @@ import { STR } from '../../data/site';
 
 const en = STR.en;
 const es = STR.es;
-// CV anchor: the prototype uses '#' as a placeholder; we adapt it to the
-// existing CV PDF that ships in /portfolio/cv/. If the owner adds a Spanish
-// CV later, both languages can resolve to different files via data-href.
-const cvHref = '/portfolio/cv/FRC_CV_Software_Engineer_Data_Scientist.pdf';
+const cvHrefEn = '/portfolio/cv/Francisco_Rodriguez_CV_en.pdf';
+const cvHrefEs = '/portfolio/cv/Francisco_Rodriguez_CV_es.pdf';
 ---
 <div class="container">
   <section class="b-hero">
@@ -30,7 +28,7 @@ const cvHref = '/portfolio/cv/FRC_CV_Software_Engineer_Data_Scientist.pdf';
           <span class="arrow">→</span>
         </a>
         <a href="#sistemas-destacados" class="btn ghost" data-en={en.cta.work} data-es={es.cta.work}>{en.cta.work}</a>
-        <a href={cvHref} class="btn ghost" target="_blank" rel="noopener">
+        <a href={cvHrefEn} data-href-en={cvHrefEn} data-href-es={cvHrefEs} class="btn ghost" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M12 4v12m-5-5 5 5 5-5M4 20h16"/>
           </svg>

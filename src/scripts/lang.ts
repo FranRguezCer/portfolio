@@ -50,6 +50,13 @@ function apply(lang: Lang): void {
     if (typeof value === 'string') el.setAttribute('aria-label', value);
   });
 
+  // href swap (used by the bilingual CV link).
+  const hrefKey = lang === 'es' ? 'hrefEs' : 'hrefEn';
+  document.querySelectorAll<HTMLAnchorElement>('a[data-href-en][data-href-es]').forEach((a) => {
+    const value = a.dataset[hrefKey];
+    if (typeof value === 'string') a.href = value;
+  });
+
   // Segmented toggle on-state.
   document.querySelectorAll<HTMLButtonElement>('.seg [data-lang]').forEach((btn) => {
     btn.classList.toggle('on', btn.dataset.lang === lang);
