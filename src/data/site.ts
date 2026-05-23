@@ -376,7 +376,7 @@ export const EDUCATION: EducationEntry[] = [
   },
 ];
 
-// Stack carousel — Simple Icons slugs render as CSS masks; null slug falls
+// Stack carousel: Simple Icons slugs render as CSS masks; null slug falls
 // back to a mono-text tile. Order: languages/runtime → AI/ML → data → infra
 // → frontend (verbatim from prototype.jsx HOME_STACK).
 export const HOME_STACK: StackItem[] = [

@@ -1,7 +1,7 @@
 // Navbar scrollspy. Tracks which on-page anchor section is currently in
 // view and pins the matching nav item active. On /work/<slug>/ the Work
 // item is force-pinned regardless of scroll (handed in via body[data-route]).
-// Ported from useScrollSpy in the design handoff prototype.jsx — the manual
+// Ported from useScrollSpy in the design handoff prototype.jsx. The manual
 // scroll listener + requestAnimationFrame is more deterministic than
 // IntersectionObserver when sections are taller than the viewport.
 

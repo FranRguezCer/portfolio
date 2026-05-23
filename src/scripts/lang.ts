@@ -3,7 +3,7 @@
 // variants data-tip-en/data-tip-es + data-aria-en/data-aria-es). On boot
 // this module reads localStorage.pp-lang, sets body[data-lang], and walks
 // the DOM swapping textContent / aria-label / tooltip text to the active
-// locale. Lives entirely in the URL of '/' or '/work/<slug>/' — never
+// locale. Lives entirely in the URL of '/' or '/work/<slug>/'; never
 // changes the URL when toggled (matches the design handoff intent).
 
 export {};
