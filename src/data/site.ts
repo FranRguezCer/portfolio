@@ -262,7 +262,7 @@ export const OTHER_LINES: OtherLine[] = [
 export const EXPERIENCE: ExperienceEntry[] = [
   {
     id: '01',
-    period: { en: '2025 - Present', es: '2025 - Actualidad' },
+    period: { en: '2025 - 2026', es: '2025 - 2026' },
     role: { en: 'Data & AI Engineer', es: 'Data & AI Engineer' },
     org: { en: 'Gran Telescopio Canarias', es: 'Gran Telescopio Canarias' },
     loc: 'La Palma, ES',
