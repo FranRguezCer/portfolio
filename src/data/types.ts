@@ -57,6 +57,7 @@ export interface StrLang {
   overview: string;
   stack: string;
   stackDisclosure: string;
+  stackCollapse: string;
   notesLbl: string;
   yearLbl: string;
   typeLbl: string;

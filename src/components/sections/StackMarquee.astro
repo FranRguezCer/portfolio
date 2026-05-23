@@ -53,10 +53,18 @@ const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.m
         </div>
       </div>
       <details class="stack-disclosure">
-        <summary
-          data-en={en.stackDisclosure}
-          data-es={es.stackDisclosure}
-        >{en.stackDisclosure}</summary>
+        <summary>
+          <span
+            class="disclosure-label disclosure-label--expand"
+            data-en={en.stackDisclosure}
+            data-es={es.stackDisclosure}
+          >{en.stackDisclosure}</span>
+          <span
+            class="disclosure-label disclosure-label--collapse"
+            data-en={en.stackCollapse}
+            data-es={es.stackCollapse}
+          >{en.stackCollapse}</span>
+        </summary>
         <ul class="tech-grid" aria-label="Full technology stack">
           {HOME_STACK.map((s) => {
             const url = iconUrl(s);
