@@ -56,9 +56,15 @@
 html, body { margin: 0; padding: 0; min-height: 100%; background: var(--bg); color: var(--fg); }
 body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
 
-/* Smooth color transition on theme flip */
-body, .nav, .foot, .b-bento .cell, .cv-row, .metric, .chip, .btn, .side-card {
-  transition: background-color 0.2s ease-out, border-color 0.2s ease-out, color 0.2s ease-out;
+/* Unified theme-flip transition: every element animates in sync at 150ms.
+   Per-element rules keep their hover-specific transitions for transform / opacity. */
+*, *::before, *::after {
+  transition: background-color 150ms ease-out,
+              border-color 150ms ease-out,
+              color 150ms ease-out,
+              fill 150ms ease-out,
+              stroke 150ms ease-out,
+              box-shadow 150ms ease-out;
 }
 
 /* Page transition */
@@ -203,7 +209,6 @@ body, .nav, .foot, .b-bento .cell, .cv-row, .metric, .chip, .btn, .side-card {
   font-size: 11px;
   color: var(--fg-soft);
   letter-spacing: 0.01em;
-  transition: border-color 0.15s, color 0.15s;
 }
 .chip.warm {
   color: var(--warm);
@@ -467,7 +472,6 @@ body, .nav, .foot, .b-bento .cell, .cv-row, .metric, .chip, .btn, .side-card {
   cursor: pointer;
   font: inherit;
   text-transform: uppercase;
-  transition: background-color 0.15s, color 0.15s;
 }
 .seg button:hover { color: var(--fg); }
 .seg button.on { background: var(--fg); color: var(--accent-ink); }
@@ -516,7 +520,6 @@ body, .nav, .foot, .b-bento .cell, .cv-row, .metric, .chip, .btn, .side-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.15s, background-color 0.15s;
 }
 .theme-btn:hover { border-color: var(--warm); color: var(--warm); }
 
@@ -576,7 +579,6 @@ body[data-theme='dark'] .cursor-halo { mix-blend-mode: screen; }
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center;
-  transition: border-color 0.15s, color 0.15s;
 }
 .a11y-btn:hover { border-color: var(--warm); color: var(--warm); }
 .a11y-btn[data-active='1'] { background: var(--warm); color: var(--accent-ink); border-color: var(--warm); }
@@ -714,25 +716,25 @@ body[data-theme='dark'] .cursor-halo { mix-blend-mode: screen; }
   justify-content: center;
   width: 56px;
   height: 32px;
-  background-color: var(--muted);
+  background-color: var(--fg-soft);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: transform 0.15s ease;
 }
 .tech-tile .stack-glyph--text {
   background-color: transparent;
-  color: var(--muted);
+  color: var(--fg-soft);
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
   white-space: nowrap;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: transform 0.15s ease;
 }
 .tech-tile:hover .stack-glyph {
   background-color: var(--fg);
@@ -791,7 +793,6 @@ body[data-theme='dark'] .cursor-halo { mix-blend-mode: screen; }
   color: var(--muted);
   cursor: pointer;
   padding: 12px 16px;
-  transition: color 0.2s ease;
 }
 .stack-disclosure summary::-webkit-details-marker { display: none; }
 .stack-disclosure summary::before {
@@ -838,13 +839,7 @@ body[data-theme='dark'] .cursor-halo { mix-blend-mode: screen; }
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px);
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease,
-    color 0.18s ease,
-    border-color 0.18s ease,
-    background-color 0.18s ease,
-    box-shadow 0.18s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 body[data-theme='dark'] .back-top {
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
@@ -929,7 +924,7 @@ body[data-theme='dark']  .theme-icon-moon { display: none; }
   border: 1px solid var(--border);
   background: var(--surface);
   padding: 28px;
-  transition: border-color 0.18s, transform 0.18s;
+  transition: transform 0.18s;
   text-decoration: none;
   color: inherit;
 }
