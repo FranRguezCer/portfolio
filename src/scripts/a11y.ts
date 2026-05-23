@@ -95,20 +95,34 @@ function applyLens(on: boolean): void {
   let visible = false;
   let raf = 0;
   let cloneT: ReturnType<typeof setTimeout> | null = null;
+  let lastX = -9999;
+  let lastY = -9999;
+
+  // The clone inside `inner` is laid out in document space, so the translate
+  // must use document coords (clientX + scrollX, clientY + scrollY) — not
+  // viewport coords — or the lens drifts as the page scrolls.
+  const positionLens = (): void => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const sx = window.scrollX;
+      const sy = window.scrollY;
+      wrap.style.left = `${lastX - LENS_SIZE / 2}px`;
+      wrap.style.top = `${lastY - LENS_SIZE / 2}px`;
+      inner.style.transform = `translate(${-(lastX + sx) * LENS_SCALE + LENS_SIZE / 2}px, ${-(lastY + sy) * LENS_SCALE + LENS_SIZE / 2}px) scale(${LENS_SCALE})`;
+    });
+  };
 
   const onMove = (e: MouseEvent): void => {
     if (!visible) {
       wrap.style.opacity = '1';
       visible = true;
     }
-    const x = e.clientX;
-    const y = e.clientY;
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      wrap.style.left = `${x - LENS_SIZE / 2}px`;
-      wrap.style.top = `${y - LENS_SIZE / 2}px`;
-      inner.style.transform = `translate(${-x * LENS_SCALE + LENS_SIZE / 2}px, ${-y * LENS_SCALE + LENS_SIZE / 2}px) scale(${LENS_SCALE})`;
-    });
+    lastX = e.clientX;
+    lastY = e.clientY;
+    positionLens();
+  };
+  const onScroll = (): void => {
+    positionLens();
   };
   const onLeave = (): void => {
     wrap.style.opacity = '0';
@@ -124,13 +138,13 @@ function applyLens(on: boolean): void {
   window.addEventListener('mousemove', onMove);
   document.addEventListener('mouseleave', onLeave);
   window.addEventListener('hashchange', reclone);
-  window.addEventListener('scroll', reclone, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   lensTeardown = (): void => {
     window.removeEventListener('mousemove', onMove);
     document.removeEventListener('mouseleave', onLeave);
     window.removeEventListener('hashchange', reclone);
-    window.removeEventListener('scroll', reclone);
+    window.removeEventListener('scroll', onScroll);
     obs.disconnect();
     if (cloneT) clearTimeout(cloneT);
     cancelAnimationFrame(raf);
