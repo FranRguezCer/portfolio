@@ -1,8 +1,14 @@
 ---
 import { STR, HOME_STACK } from '../../data/site';
+import type { StackItem } from '../../data/types';
 
 const en = STR.en;
 const es = STR.es;
+const base = import.meta.env.BASE_URL;
+const iconUrl = (s: StackItem) =>
+  s.iconPath ? `${base}${s.iconPath}` :
+  s.slug ? `https://cdn.simpleicons.org/${s.slug}/black` :
+  null;
 // Render the marquee track twice so the loop is seamless; the second half
 // is aria-hidden because it duplicates the first for animation purposes.
 const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.map((s) => ({ s, hidden: true }))];
@@ -26,21 +32,24 @@ const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.m
         data-aria-es="Tecnologías en uso"
       >
         <div class="tech-marquee-track">
-          {tiles.map(({ s, hidden }) => (
-            <div class="tech-tile" aria-hidden={hidden ? 'true' : 'false'}>
-              {s.slug ? (
-                <span
-                  class="stack-glyph"
-                  role="img"
-                  aria-label={s.label}
-                  style={`-webkit-mask-image: url(https://cdn.simpleicons.org/${s.slug}/black); mask-image: url(https://cdn.simpleicons.org/${s.slug}/black);`}
-                />
-              ) : (
-                <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
-              )}
-              <div class="name">{s.label}</div>
-            </div>
-          ))}
+          {tiles.map(({ s, hidden }) => {
+            const url = iconUrl(s);
+            return (
+              <div class="tech-tile" aria-hidden={hidden ? 'true' : 'false'}>
+                {url ? (
+                  <span
+                    class="stack-glyph"
+                    role="img"
+                    aria-label={s.label}
+                    style={`-webkit-mask-image: url(${url}); mask-image: url(${url});`}
+                  />
+                ) : (
+                  <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
+                )}
+                <div class="name">{s.label}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
       <details class="stack-disclosure">
@@ -49,21 +58,24 @@ const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.m
           data-es={es.stackDisclosure}
         >{en.stackDisclosure}</summary>
         <ul class="tech-grid" aria-label="Full technology stack">
-          {HOME_STACK.map((s) => (
-            <li class="tech-tile">
-              {s.slug ? (
-                <span
-                  class="stack-glyph"
-                  role="img"
-                  aria-label={s.label}
-                  style={`-webkit-mask-image: url(https://cdn.simpleicons.org/${s.slug}/black); mask-image: url(https://cdn.simpleicons.org/${s.slug}/black);`}
-                />
-              ) : (
-                <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
-              )}
-              <div class="name">{s.label}</div>
-            </li>
-          ))}
+          {HOME_STACK.map((s) => {
+            const url = iconUrl(s);
+            return (
+              <li class="tech-tile">
+                {url ? (
+                  <span
+                    class="stack-glyph"
+                    role="img"
+                    aria-label={s.label}
+                    style={`-webkit-mask-image: url(${url}); mask-image: url(${url});`}
+                  />
+                ) : (
+                  <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
+                )}
+                <div class="name">{s.label}</div>
+              </li>
+            );
+          })}
         </ul>
       </details>
     </div>

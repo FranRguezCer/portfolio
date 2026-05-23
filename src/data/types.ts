@@ -112,6 +112,7 @@ export interface EducationEntry {
 export interface StackItem {
   label: string;
   slug: string | null;
+  iconPath?: string;
 }
 
 export interface WorkIntroEntry {

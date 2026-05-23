@@ -766,13 +766,14 @@ body[data-theme='dark'] .cursor-halo { mix-blend-mode: screen; }
   grid-template-columns: repeat(2, 1fr);
   gap: 0;
   border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
 }
 .tech-grid .tech-tile {
   width: auto;
   border-bottom: 1px solid var(--hairline);
 }
 @media (min-width: 700px) {
-  .tech-grid { grid-template-columns: repeat(7, 1fr); }
+  .tech-grid { grid-template-columns: repeat(5, 1fr); }
 }
 .stack-container:has(details[open]) .tech-marquee { display: none; }
 .stack-container:has(details[open]) .tech-grid { display: grid; }
