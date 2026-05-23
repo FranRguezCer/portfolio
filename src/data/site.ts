@@ -145,26 +145,26 @@ export const WORK: WorkCase[] = [
     },
     body: {
       en: [
-        'Maintenance and evolution of the corporate Deltalake, a medallion-structured lake (bronze/silver/gold) on Iceberg, with a metastore for catalog and OpenMetadata for governance, lineage and data discovery.',
-        'Batch pipelines on PySpark over Kubernetes. Real-time ingestion combined Debezium and Kafka to capture changes from heterogeneous operational systems. The gold layer fed internal analytics, downstream AI processes and leadership reporting.',
+        'Maintenance and evolution of the corporate Deltalake, a medallion-structured platform (bronze/silver/gold) on replicated buckets with partitioned parquet files, using Apache Iceberg as the catalog layer and OpenMetadata for governance, lineage and data discovery.',
+        'Batch pipelines on PySpark over Kubernetes. Real-time ingestion combined Debezium and Kafka to capture changes from heterogeneous operational systems. Bronze ingested raw data, silver handled aggregation, cleaning and normalisation, and gold was generated on demand to feed internal analytics, downstream AI processes and leadership reporting.',
       ],
       es: [
-        'Mantenimiento y evolución del Deltalake corporativo, una plataforma con estructura medallion (bronze/silver/gold) en buckets con replicación y particionado de ficheros parquet sobre Iceberg como capa de catálogo.',
-        'Pipelines batch sobre PySpark en Kubernetes. La ingesta en tiempo real combinó Debezium y Kafka para capturar cambios desde sistemas operacionales heterogéneos. La capa bronze ingesta los datos crudos, la silver se encarga de la agregación limpieza y normalización de los mismos y la capa gold se genera bajo demanda para alimentar casos de uso internos.',
+        'Mantenimiento y evolución del Deltalake corporativo, una plataforma con estructura medallion (bronze/silver/gold) sobre buckets con replicación y ficheros parquet particionados, usando Apache Iceberg como capa de catálogo y OpenMetadata para gobernanza, linaje y descubrimiento de datos.',
+        'Pipelines batch sobre PySpark en Kubernetes. La ingesta en tiempo real combinó Debezium y Kafka para capturar cambios desde sistemas operacionales heterogéneos. La capa bronze ingesta los datos crudos, la silver se encarga de la agregación, limpieza y normalización, y la capa gold se genera bajo demanda para alimentar analítica interna, procesos de IA downstream y reporting de liderazgo.',
       ],
     },
     notesLabel: { en: 'Context notes', es: 'Notas de contexto' },
     notes: {
       en: [
-        'Hybrid on-premise infrastructure, not a hyperscale cloud.',
+        'Easily scalable on-premise infrastructure.',
         'Designed to evolve without rewrites: adding a new data source is a configuration operation, not an engineering one.',
       ],
       es: [
         'Infraestructura on-premise fácilmente escalable.',
-        'Diseño pensado para dar soporte HA y Big Data en tiempo real e histórico.',
+        'Diseñado para evolucionar sin rewrites: agregar una nueva fuente de datos es una operación de configuración, no de ingeniería.',
       ],
     },
-    stack: ['PySpark', 'Iceberg', 'Apache Ozone', 'Debezium · Kafka', 'Kubernetes', 'Docker'],
+    stack: ['PySpark', 'Apache Iceberg', 'Apache Ozone', 'Debezium · Kafka', 'Kubernetes', 'Docker'],
   },
   {
     id: '03',
