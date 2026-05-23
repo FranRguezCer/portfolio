@@ -806,6 +806,9 @@ body[data-theme='dark'] .cursor-halo { mix-blend-mode: screen; }
 .stack-disclosure[open] summary::before { content: '−'; }
 .stack-disclosure summary:hover,
 .stack-disclosure summary:focus-visible { color: var(--fg); outline: none; }
+.stack-disclosure summary .disclosure-label--collapse { display: none; }
+.stack-disclosure[open] summary .disclosure-label--expand { display: none; }
+.stack-disclosure[open] summary .disclosure-label--collapse { display: inline; }
 
 @media (prefers-reduced-motion: reduce) {
   .tech-marquee-track { animation: none; }
