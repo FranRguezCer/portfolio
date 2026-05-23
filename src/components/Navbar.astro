@@ -24,7 +24,7 @@ const navItems: NavItem[] = [
   { id: 'contact', anchor: 'contact' },
 ];
 
-// Pre-rendered active state — scrollspy.ts takes over once mounted, but
+// Pre-rendered active state. scrollspy.ts takes over once mounted, but
 // this keeps the navbar visually correct on first paint for work-case pages.
 const initialActive: NavItem['id'] | 'none' =
   route === 'work' ? 'work' :
@@ -63,7 +63,7 @@ const initialLang = lang;
       </ul>
 
       <div class="end">
-        <!-- Segmented language toggle — lang.ts wires the clicks and the
+        <!-- Segmented language toggle: lang.ts wires the clicks and the
              .on state is reapplied each time the language changes. -->
         <div class="seg mono" role="group" aria-label="Language">
           <button

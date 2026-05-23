@@ -107,12 +107,12 @@ export const WORK: WorkCase[] = [
     body: {
       en: [
         'An assistant built on top of an agent graph, operating over a dense and highly regulated body of documents. Manual work by technical analysts on long legal documents went from days to hours, with results that are traceable rather than opaque.',
-        'The design is deliberately hybrid: the language model only steps in where it actually adds value — reading ambiguous passages, rewriting free-form text. The heavy lifting — document retrieval, templates, tables, validations — stays in deterministic code, which is auditable, predictable and cheap to maintain.',
+        'The design is deliberately hybrid: the language model only steps in where it actually adds value: reading ambiguous passages, rewriting free-form text. The heavy lifting (document retrieval, templates, tables, validations) stays in deterministic code, which is auditable, predictable and cheap to maintain.',
         'The whole system runs on-premise. No data leaves the organization, and there is no dependency on external LLM APIs.',
       ],
       es: [
         'Asistente construido sobre un grafo de agentes que opera sobre un dominio documental denso y altamente regulado. El trabajo manual de analistas técnicos sobre documentos legales largos pasó de días a horas, con resultados trazables en lugar de opacos.',
-        'El diseño es deliberadamente híbrido: el modelo de lenguaje solo interviene donde aporta valor real — leer párrafos ambiguos, reescribir texto libre. El peso del sistema — recuperación documental, plantillas, tablas, validaciones — vive en código determinista, auditable, predecible y barato de mantener.',
+        'El diseño es deliberadamente híbrido: el modelo de lenguaje solo interviene donde aporta valor real: leer párrafos ambiguos, reescribir texto libre. El peso del sistema (recuperación documental, plantillas, tablas, validaciones) vive en código determinista, auditable, predecible y barato de mantener.',
         'Todo el sistema corre on-premise. Los datos no salen de la organización y no hay dependencia de APIs externas de LLM.',
       ],
     },
@@ -145,11 +145,11 @@ export const WORK: WorkCase[] = [
     },
     body: {
       en: [
-        'Maintenance and evolution of the corporate Deltalake — a medallion-structured lake (bronze/silver/gold) on Iceberg, with a metastore for catalog and OpenMetadata for governance, lineage and data discovery.',
+        'Maintenance and evolution of the corporate Deltalake, a medallion-structured lake (bronze/silver/gold) on Iceberg, with a metastore for catalog and OpenMetadata for governance, lineage and data discovery.',
         'Batch pipelines on PySpark over Kubernetes. Real-time ingestion combined Debezium and Kafka to capture changes from heterogeneous operational systems. The gold layer fed internal analytics, downstream AI processes and leadership reporting.',
       ],
       es: [
-        'Mantenimiento y evolución del Deltalake corporativo — una plataforma con estructura medallion (bronze/silver/gold) en buckets con replicación y particionado de ficheros parquet sobre Iceberg como capa de catálogo.',
+        'Mantenimiento y evolución del Deltalake corporativo, una plataforma con estructura medallion (bronze/silver/gold) en buckets con replicación y particionado de ficheros parquet sobre Iceberg como capa de catálogo.',
         'Pipelines batch sobre PySpark en Kubernetes. La ingesta en tiempo real combinó Debezium y Kafka para capturar cambios desde sistemas operacionales heterogéneos. La capa bronze ingesta los datos crudos, la silver se encarga de la agregación limpieza y normalización de los mismos y la capa gold se genera bajo demanda para alimentar casos de uso internos.',
       ],
     },
@@ -235,8 +235,8 @@ export const OTHER_LINES: OtherLine[] = [
       es: 'Digitalización de procedimientos que vivían como silos departamentales. Un patrón consistente: identificar el silo, modelar el procedimiento como flujo explícito, montar interfaz mínima encima.',
     },
     body: {
-      en: 'Collaboration on initiatives to digitalise procedures that lived as departmental silos: fragmented documentation, tacit knowledge, non-auditable processes. The pattern was consistent — identify the silo, model the procedure as an explicit flow, wrap a minimal interface on top.',
-      es: 'Colaboración en iniciativas de digitalización de procedimientos que vivían como silos departamentales: documentación fragmentada, conocimiento implícito, procesos no auditables. El patrón fue consistente — identificar el silo, modelar el procedimiento como flujo explícito, montar interfaz mínima encima.',
+      en: 'Collaboration on initiatives to digitalise procedures that lived as departmental silos: fragmented documentation, tacit knowledge, non-auditable processes. The pattern was consistent: identify the silo, model the procedure as an explicit flow, wrap a minimal interface on top.',
+      es: 'Colaboración en iniciativas de digitalización de procedimientos que vivían como silos departamentales: documentación fragmentada, conocimiento implícito, procesos no auditables. El patrón fue consistente: identificar el silo, modelar el procedimiento como flujo explícito, montar interfaz mínima encima.',
     },
     chips: ['FastAPI / Node.js', 'React', 'MySQL'],
   },
@@ -262,7 +262,7 @@ export const OTHER_LINES: OtherLine[] = [
 export const EXPERIENCE: ExperienceEntry[] = [
   {
     id: '01',
-    period: { en: '2025 — Present', es: '2025 — Actualidad' },
+    period: { en: '2025 - Present', es: '2025 - Actualidad' },
     role: { en: 'Data & AI Engineer', es: 'Data & AI Engineer' },
     org: { en: 'Gran Telescopio Canarias', es: 'Gran Telescopio Canarias' },
     loc: 'La Palma, ES',
@@ -288,7 +288,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     id: '02',
-    period: { en: '2024 — 2025', es: '2024 — 2025' },
+    period: { en: '2024 - 2025', es: '2024 - 2025' },
     role: { en: 'Data Scientist', es: 'Data Scientist' },
     org: { en: 'Cabildo Insular de La Palma', es: 'Cabildo Insular de La Palma' },
     loc: 'La Palma, ES',
@@ -300,7 +300,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     bullets: {
       en: [
         'Automated weekly reporting of air quality and CO₂ with Python + ArcGIS Online. Eliminated ~12 hours/week of manual work and turned volcanic monitoring at Puerto Naos into actionable data for 6+ non-technical stakeholders.',
-        'Discovered through EDA a Pearson correlation of ~0.6 between coastal CO₂ and tidal cycles — a previously undocumented gas-accumulation mechanism. Led Emergencies to revise the safety protocol for inhabited coastal areas after the eruption.',
+        'Discovered through EDA a Pearson correlation of ~0.6 between coastal CO₂ and tidal cycles, a previously undocumented gas-accumulation mechanism. Led Emergencies to revise the safety protocol for inhabited coastal areas after the eruption.',
         'Designed interactive dashboards in Power BI and Tableau for emergencies, waste management and HR (1000+ employees). The CO₂ dashboard became the emergencies team’s go-to tool for their daily habitability decisions.',
         'Standardised a historical dataset of 3M+ records from the meteorological portal, recovering analytical continuity back to 2016 (first IoT rollout). Designed the proposed PostgreSQL schema to evolve the system.',
       ],
@@ -314,7 +314,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     id: '03',
-    period: { en: '2022 — 2023', es: '2022 — 2023' },
+    period: { en: '2022 - 2023', es: '2022 - 2023' },
     role: { en: 'Mathematics, Physics & Chemistry Tutor', es: 'Profesor particular de Matemáticas, Física y Química' },
     org: { en: 'Independent', es: 'Independiente' },
     loc: 'Tenerife, ES',
@@ -368,7 +368,6 @@ export const EDUCATION: EducationEntry[] = [
     period: { en: 'Ongoing', es: 'En curso' },
     title: { en: 'Continuous coursework', es: 'Formación continua' },
     org: { en: 'Coursera · Udacity · AWS · Udemy', es: 'Coursera · Udacity · AWS · Udemy' },
-    loc: '—',
     tag: { en: 'Specialisation', es: 'Especialización' },
     desc: {
       en: 'Google Data Analytics (Coursera), AWS Cloud Practitioner 101 (AWS Skill Builder), Agentic AI (Udacity), Python and Kubernetes specialisations (Udemy), among others.',
@@ -377,7 +376,7 @@ export const EDUCATION: EducationEntry[] = [
   },
 ];
 
-// Stack carousel — Simple Icons slugs render as CSS masks; null slug falls
+// Stack carousel: Simple Icons slugs render as CSS masks; null slug falls
 // back to a mono-text tile. Order: languages/runtime → AI/ML → data → infra
 // → frontend (verbatim from prototype.jsx HOME_STACK).
 export const HOME_STACK: StackItem[] = [

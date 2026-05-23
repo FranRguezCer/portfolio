@@ -1,5 +1,5 @@
 /* ============================================================================
- * Portfolio — global stylesheet
+ * Portfolio: global stylesheet
  * Ported verbatim from the Claude Design handoff:
  *   project/design_handoff_portfolio/styles.css      → design tokens, chrome,
  *                                                       sections, case-detail,
@@ -239,7 +239,7 @@ body, .nav, .foot, .b-bento .cell, .cv-row, .metric, .chip, .btn, .side-card {
 .body-lg { font-size: 19px; line-height: 1.55; color: var(--fg-soft); }
 .small { font-size: 13px; line-height: 1.5; color: var(--muted); }
 
-/* ─── Variant B — Bento Hybrid (used by the live home page) ────────── */
+/* ─── Variant B: Bento Hybrid (used by the live home page) ────────── */
 .b-hero {
   padding: 80px 0 64px;
   display: grid;
@@ -275,7 +275,7 @@ body, .nav, .foot, .b-bento .cell, .cv-row, .metric, .chip, .btn, .side-card {
 .b-hero .side-card .stat-row:first-of-type { border-top: 0; padding-top: 0; }
 .b-hero .side-card .stat-row .v { font-size: 20px; font-weight: 500; }
 
-/* Closing banner — full-bleed image + mono caption, sits before the footer.
+/* Closing banner: full-bleed image + mono caption, sits before the footer.
    Contextual asset: Roque de los Muchachos. */
 .closing-banner {
   margin: 32px 0 64px;
@@ -297,7 +297,7 @@ body, .nav, .foot, .b-bento .cell, .cv-row, .metric, .chip, .btn, .side-card {
   object-fit: cover;
   object-position: center;
   /* Zoom in slightly so the tall dark rock silhouettes at the lateral edges
-     get pushed out of frame — only their lower bases remain visible. */
+     get pushed out of frame; only their lower bases remain visible. */
   transform: scale(1.15);
   transform-origin: center center;
 }
@@ -534,7 +534,7 @@ a:focus-visible, button:focus-visible {
 ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
 /* ─── A11y / accessibility controls ───────────────────────────────── */
-/* Font size scaling — uses CSS zoom on #app so inline px font-sizes are
+/* Font size scaling: uses CSS zoom on #app so inline px font-sizes are
    respected and the whole UI scales proportionally (text + spacing). */
 body[data-a11y-text='lg']   #app { zoom: 1.15; }
 body[data-a11y-text='xl']   #app { zoom: 1.30; }

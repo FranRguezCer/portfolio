@@ -1,4 +1,4 @@
-# Portfolio — Francisco Rodríguez
+# Portfolio: Francisco Rodríguez
 
 Personal portfolio site, built with Astro 5 and plain CSS over a single typed bilingual data module. Hosted on GitHub Pages under the `/portfolio/` subpath.
 
@@ -10,8 +10,8 @@ The visual surface is the verbatim output of a Claude Design handoff (`design_ha
 
 ## Stack
 
-- [Astro 5](https://astro.build/) — static site framework, base path `/portfolio/`, trailing slashes always.
-- Plain CSS with `:root` design tokens — no Tailwind, no preprocessor. Light + dark themes via `[data-theme]`.
+- [Astro 5](https://astro.build/): static site framework, base path `/portfolio/`, trailing slashes always.
+- Plain CSS with `:root` design tokens, no Tailwind, no preprocessor. Light + dark themes via `[data-theme]`.
 - TypeScript in strict mode for the runtime scripts and the data module.
 - Plus Jakarta Sans + JetBrains Mono via Google Fonts (preconnect + display=swap).
 - Simple Icons SVG masks rendered at runtime from `cdn.simpleicons.org`.
@@ -64,7 +64,7 @@ Single-page long-scroll home with anchor sections (`#sistemas-destacados`, `#sta
 
 The HTML is pre-rendered in English. Every translatable element carries `data-en` / `data-es` (and `data-tip-en` / `data-tip-es` for tooltips, `data-aria-en` / `data-aria-es` for aria-labels). On boot:
 
-1. An inline `<script>` in `<head>` reads `pp-theme` from localStorage and sets `<html data-theme>` before the body paints — no flash of wrong palette.
+1. An inline `<script>` in `<head>` reads `pp-theme` from localStorage and sets `<html data-theme>` before the body paints. No flash of wrong palette.
 2. Once the body is parsed, `theme.ts` mirrors the theme onto `<body>` and wires the navbar `#theme-toggle`.
 3. `lang.ts` reads `pp-lang`, sets `<body data-lang>` and walks `[data-en][data-es]` (and the tip / aria variants) swapping content in place. Wires the segmented `EN / ES` buttons.
 4. `scrollspy.ts` tracks the five home anchors with a manual scroll probe at `NAV_OFFSET + 24` (80 + 24) and pins the matching nav item. On `/work/<slug>/` it force-pins **Work**.
@@ -91,7 +91,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:4321/portfolio/. The same URL serves both languages — toggle with the `EN / ES` chip in the navbar.
+Open http://localhost:4321/portfolio/. The same URL serves both languages; toggle with the `EN / ES` chip in the navbar.
 
 Available scripts:
 
@@ -109,7 +109,7 @@ All bilingual copy lives in `src/data/site.ts` as exported `const`s with strict 
 ### Add a case study
 
 1. Append a new entry to `WORK` in `src/data/site.ts` with `id`, `slug`, `title`, `domain`, `oneLiner`, `body`, `notesLabel`, `notes` (each as `{ en, es }` where the type calls for it) and `stack`.
-2. `npm run build` — Astro picks up the new slug through `getStaticPaths` and emits `/work/<slug>/index.html` automatically.
+2. `npm run build`: Astro picks up the new slug through `getStaticPaths` and emits `/work/<slug>/index.html` automatically.
 
 ### Add an experience or education entry
 
@@ -121,7 +121,7 @@ Add an `ExperienceEntry` or `EducationEntry` (see `src/data/types.ts`) to the co
 
 ### Adjust UI / chrome strings
 
-Navbar labels, section headers, eyebrow text, profile card labels and microcopy are co-located with the markup that uses them — search for `data-en` / `data-es` in `src/components/`. The site dictionary (`STR` in `src/data/site.ts`) is the source for everything that the prototype emits from `STR[lang]`.
+Navbar labels, section headers, eyebrow text, profile card labels and microcopy are co-located with the markup that uses them; search for `data-en` / `data-es` in `src/components/`. The site dictionary (`STR` in `src/data/site.ts`) is the source for everything that the prototype emits from `STR[lang]`.
 
 ## Conventions
 
