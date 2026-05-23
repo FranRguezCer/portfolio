@@ -231,14 +231,14 @@ export const OTHER_LINES: OtherLine[] = [
       es: 'Herramientas web internas para transformación digital',
     },
     summary: {
-      en: 'Digitalising procedures that lived as departmental silos. A consistent pattern: identify the silo, model the procedure as an explicit flow, wrap a minimal interface on top.',
-      es: 'Digitalización de procedimientos que vivían como silos departamentales. Un patrón consistente: identificar el silo, modelar el procedimiento como flujo explícito, montar interfaz mínima encima.',
+      en: 'Asynchronous platform for telescope team leads to coordinate and validate usage and performance statistics across multiple operational sources, without periodic meetings or scattered spreadsheets.',
+      es: 'Plataforma asíncrona para que responsables de equipos del telescopio coordinen y validen estadísticas de uso y rendimiento cruzando varias fuentes, sin reuniones periódicas ni hojas de cálculo dispersas.',
     },
     body: {
-      en: 'Collaboration on initiatives to digitalise procedures that lived as departmental silos: fragmented documentation, tacit knowledge, non-auditable processes. The pattern was consistent: identify the silo, model the procedure as an explicit flow, wrap a minimal interface on top.',
-      es: 'Colaboración en iniciativas de digitalización de procedimientos que vivían como silos departamentales: documentación fragmentada, conocimiento implícito, procesos no auditables. El patrón fue consistente: identificar el silo, modelar el procedimiento como flujo explícito, montar interfaz mínima encima.',
+      en: 'Async platform that lets telescope team leads coordinate and validate usage and performance statistics by cross-referencing data from multiple operational sources. It replaced the dependency on periodic meetings and Excel-style spreadsheets to consolidate scattered metrics, giving each team lead an auditable view they can review on their own schedule.',
+      es: 'Plataforma asíncrona para que los responsables de equipos del telescopio coordinen y validen las estadísticas de uso y rendimiento cruzando información de varias fuentes operacionales. Reemplaza la dependencia de reuniones periódicas y de hojas de cálculo tipo Excel para consolidar métricas dispersas, dándole a cada responsable una vista auditable que puede revisar a su propio ritmo.',
     },
-    chips: ['FastAPI / Node.js', 'React', 'MySQL'],
+    chips: ['Node.js', 'TypeScript', 'MySQL'],
   },
   {
     id: '06',
