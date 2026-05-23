@@ -20,6 +20,11 @@ src/
 ├── scripts/      # theme, lang, scrollspy, a11y, backToTop
 ├── styles/       # global.css
 └── pages/        # index, work/[slug], 404
+
+public/
+├── cv/           # Francisco_Rodriguez_CV_{en,es}.pdf
+├── icons/        # local stack SVGs (mask-image)
+└── img/          # favicons, OG image, banner
 ```
 
 All bilingual copy lives in `src/data/site.ts`.
