@@ -18,29 +18,60 @@ const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.m
         <h2 class="h1" style="margin-top: 12px;">Stack</h2>
       </div>
     </div>
-    <div
-      class="tech-marquee"
-      aria-label="Technologies in use"
-      data-aria-en="Technologies in use"
-      data-aria-es="Tecnologías en uso"
-    >
-      <div class="tech-marquee-track">
-        {tiles.map(({ s, hidden }) => (
-          <div class="tech-tile" aria-hidden={hidden ? 'true' : 'false'}>
-            {s.slug ? (
-              <span
-                class="stack-glyph"
-                role="img"
-                aria-label={s.label}
-                style={`-webkit-mask-image: url(https://cdn.simpleicons.org/${s.slug}/black); mask-image: url(https://cdn.simpleicons.org/${s.slug}/black);`}
-              />
-            ) : (
-              <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
-            )}
-            <div class="name">{s.label}</div>
-          </div>
-        ))}
+    <div class="stack-container">
+      <div
+        class="tech-marquee"
+        aria-label="Technologies in use"
+        data-aria-en="Technologies in use"
+        data-aria-es="Tecnologías en uso"
+      >
+        <div class="tech-marquee-track">
+          {tiles.map(({ s, hidden }) => (
+            <div class="tech-tile" aria-hidden={hidden ? 'true' : 'false'}>
+              {s.slug ? (
+                <span
+                  class="stack-glyph"
+                  role="img"
+                  aria-label={s.label}
+                  style={`-webkit-mask-image: url(https://cdn.simpleicons.org/${s.slug}/black); mask-image: url(https://cdn.simpleicons.org/${s.slug}/black);`}
+                />
+              ) : (
+                <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
+              )}
+              <div class="name">{s.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
+      <details class="stack-disclosure">
+        <summary
+          data-en={en.stackDisclosure}
+          data-es={es.stackDisclosure}
+        >{en.stackDisclosure}</summary>
+        <ul class="tech-grid" aria-label="Full technology stack">
+          {HOME_STACK.map((s) => (
+            <li class="tech-tile">
+              {s.slug ? (
+                <span
+                  class="stack-glyph"
+                  role="img"
+                  aria-label={s.label}
+                  style={`-webkit-mask-image: url(https://cdn.simpleicons.org/${s.slug}/black); mask-image: url(https://cdn.simpleicons.org/${s.slug}/black);`}
+                />
+              ) : (
+                <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
+              )}
+              <div class="name">{s.label}</div>
+            </li>
+          ))}
+        </ul>
+      </details>
     </div>
   </section>
 </div>
+
+<script>
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelector('.stack-disclosure')?.setAttribute('open', '');
+  }
+</script>

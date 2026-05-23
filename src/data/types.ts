@@ -56,6 +56,7 @@ export interface StrLang {
   crumbWork: string;
   overview: string;
   stack: string;
+  stackDisclosure: string;
   notesLbl: string;
   yearLbl: string;
   typeLbl: string;
