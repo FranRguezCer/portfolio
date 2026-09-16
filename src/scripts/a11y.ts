@@ -1,10 +1,9 @@
-// Accessibility panel. Persists four user settings under their handoff
-// localStorage keys (a11y-font, a11y-lens, a11y-cb, a11y-halo) and
+// Accessibility panel. Persists three user settings under their handoff
+// localStorage keys (a11y-font, a11y-lens, a11y-cb) and
 // applies them at runtime:
 //   * Font size  → body[data-a11y-text='lg'|'xl']  triggers CSS zoom on #app.
 //   * Colorblind → #app[data-a11y-cb='<filter>']   wraps the app in an SVG filter.
 //   * Cursor lens → DOM clone of #app inside a circular div following the cursor.
-//   * Cursor halo → fixed circle following the cursor with blend mode per theme.
 // Behaviour ported from A11yPanel in the design handoff prototype.jsx.
 
 export {};
@@ -15,7 +14,6 @@ type ColorblindMode = 'none' | 'protanopia' | 'deuteranopia' | 'tritanopia' | 'a
 const KEY_FONT = 'a11y-font';
 const KEY_LENS = 'a11y-lens';
 const KEY_CB = 'a11y-cb';
-const KEY_HALO = 'a11y-halo';
 
 const LENS_SIZE = 220;
 const LENS_SCALE = 1.9;
@@ -31,9 +29,6 @@ function readCb(): ColorblindMode {
   const v = safeGet(KEY_CB);
   if (v === 'protanopia' || v === 'deuteranopia' || v === 'tritanopia' || v === 'achromatopsia') return v;
   return 'none';
-}
-function readHalo(): boolean {
-  return safeGet(KEY_HALO) === '1';
 }
 function safeGet(k: string): string | null {
   try { return localStorage.getItem(k); } catch { return null; }
@@ -113,6 +108,12 @@ function applyLens(on: boolean): void {
   };
 
   const onMove = (e: MouseEvent): void => {
+    const target = e.target instanceof Element ? e.target : null;
+    if (target?.closest('#a11y-panel, #a11y-toggle')) {
+      wrap.style.opacity = '0';
+      visible = false;
+      return;
+    }
     if (!visible) {
       wrap.style.opacity = '1';
       visible = true;
@@ -152,62 +153,19 @@ function applyLens(on: boolean): void {
   };
 }
 
-/* ── Cursor halo ─────────────────────────────────────────────────── */
-let haloTeardown: (() => void) | null = null;
-function applyHalo(on: boolean): void {
-  safeSet(KEY_HALO, on ? '1' : '0');
-  if (!on) {
-    haloTeardown?.();
-    haloTeardown = null;
-    return;
-  }
-  if (haloTeardown) return;
-
-  const el = document.createElement('div');
-  el.className = 'cursor-halo';
-  el.style.opacity = '0';
-  document.body.appendChild(el);
-
-  let raf = 0;
-  let mx = 0;
-  let my = 0;
-  const onMove = (e: MouseEvent): void => {
-    mx = e.clientX;
-    my = e.clientY;
-    el.style.opacity = '1';
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      el.style.transform = `translate(${mx}px,${my}px)`;
-    });
-  };
-  const onLeave = (): void => {
-    el.style.opacity = '0';
-  };
-  window.addEventListener('mousemove', onMove);
-  document.addEventListener('mouseleave', onLeave);
-
-  haloTeardown = (): void => {
-    window.removeEventListener('mousemove', onMove);
-    document.removeEventListener('mouseleave', onLeave);
-    cancelAnimationFrame(raf);
-    el.remove();
-  };
-}
-
 /* ── Panel state + UI wiring ─────────────────────────────────────── */
 interface State {
   font: FontSize;
   lens: boolean;
   cb: ColorblindMode;
-  halo: boolean;
 }
 
 function currentState(): State {
-  return { font: readFont(), lens: readLens(), cb: readCb(), halo: readHalo() };
+  return { font: readFont(), lens: readLens(), cb: readCb() };
 }
 
 function syncToggleButtonState(state: State): void {
-  const anyOn = state.font !== 'md' || state.lens || state.cb !== 'none' || state.halo;
+  const anyOn = state.font !== 'md' || state.lens || state.cb !== 'none';
   const btn = document.getElementById('a11y-toggle');
   if (btn) btn.dataset.active = anyOn ? '1' : '0';
 }
@@ -219,18 +177,14 @@ function syncPanelControls(state: State): void {
   const lensBtn = document.getElementById('a11y-lens-toggle');
   if (lensBtn) {
     lensBtn.classList.toggle('on', state.lens);
+    lensBtn.setAttribute('aria-pressed', state.lens ? 'true' : 'false');
     syncToggleLabel(lensBtn, state.lens);
-  }
-  const haloBtn = document.getElementById('a11y-halo-toggle');
-  if (haloBtn) {
-    haloBtn.classList.toggle('on', state.halo);
-    syncToggleLabel(haloBtn, state.halo);
   }
   const cbSelect = document.getElementById('a11y-cb-select') as HTMLSelectElement | null;
   if (cbSelect) cbSelect.value = state.cb;
   const resetRow = document.getElementById('a11y-reset-row');
   if (resetRow) {
-    const anyOn = state.font !== 'md' || state.lens || state.cb !== 'none' || state.halo;
+    const anyOn = state.font !== 'md' || state.lens || state.cb !== 'none';
     resetRow.style.display = anyOn ? 'flex' : 'none';
   }
 }
@@ -258,13 +212,12 @@ function setState(patch: Partial<State>): void {
   if (patch.font !== undefined) applyFont(next.font);
   if (patch.cb !== undefined) applyCb(next.cb);
   if (patch.lens !== undefined) applyLens(next.lens);
-  if (patch.halo !== undefined) applyHalo(next.halo);
   syncToggleButtonState(next);
   syncPanelControls(next);
 }
 
 function reset(): void {
-  setState({ font: 'md', lens: false, cb: 'none', halo: false });
+  setState({ font: 'md', lens: false, cb: 'none' });
 }
 
 function setup(): void {
@@ -273,7 +226,6 @@ function setup(): void {
   applyFont(s.font);
   applyCb(s.cb);
   if (s.lens) applyLens(true);
-  if (s.halo) applyHalo(true);
   syncToggleButtonState(s);
   syncPanelControls(s);
 
@@ -297,10 +249,7 @@ function setup(): void {
   });
   // Lens toggle.
   const lensBtn = document.getElementById('a11y-lens-toggle');
-  if (lensBtn) lensBtn.addEventListener('click', () => setState({ lens: !currentState().lens }));
-  // Halo toggle.
-  const haloBtn = document.getElementById('a11y-halo-toggle');
-  if (haloBtn) haloBtn.addEventListener('click', () => setState({ halo: !currentState().halo }));
+  if (lensBtn) lensBtn.addEventListener('click', () => setState({ lens: lensTeardown === null }));
   // Colorblind dropdown.
   const cbSelect = document.getElementById('a11y-cb-select') as HTMLSelectElement | null;
   if (cbSelect) {

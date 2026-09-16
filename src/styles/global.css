@@ -8,7 +8,7 @@
  *                                                       segmented toggle, tooltip,
  *                                                       theme button, focus
  *                                                       styles, scrollbar, a11y
- *                                                       (font / lens / cb / halo),
+ *                                                       (font / lens / cb),
  *                                                       tech marquee, back-to-top,
  *                                                       responsive collapse.
  * The handoff README marks these styles as final ("match pixel-level details").
@@ -551,22 +551,6 @@ body[data-a11y-text='xl']   #app { zoom: 1.30; }
 /* Cursor magnifier lens */
 .a11y-lens { will-change: left, top; }
 .a11y-lens * { pointer-events: none !important; animation: none !important; transition: none !important; }
-
-/* Cursor halo */
-.cursor-halo {
-  position: fixed;
-  top: 0; left: 0;
-  width: 56px; height: 56px;
-  margin-left: -28px; margin-top: -28px;
-  border-radius: 999px;
-  border: 2px solid var(--warm);
-  background: radial-gradient(circle, color-mix(in oklab, var(--warm) 25%, transparent) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: multiply;
-  transition: transform 60ms linear, opacity 0.2s;
-}
-body[data-theme='dark'] .cursor-halo { mix-blend-mode: screen; }
 
 /* A11y button + panel */
 .a11y-wrap { position: relative; display: inline-flex; }
