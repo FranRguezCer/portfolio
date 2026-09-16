@@ -1,5 +1,5 @@
 ---
-import { STR, HOME_STACK } from '../../data/site';
+import { STR, HOME_STACK, SKILL_GROUPS } from '../../data/site';
 import type { StackItem } from '../../data/types';
 
 const en = STR.en;
@@ -65,26 +65,16 @@ const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.m
             data-es={es.stackCollapse}
           >{en.stackCollapse}</span>
         </summary>
-        <ul class="tech-grid" aria-label="Full technology stack">
-          {HOME_STACK.map((s) => {
-            const url = iconUrl(s);
-            return (
-              <li class="tech-tile">
-                {url ? (
-                  <span
-                    class="stack-glyph"
-                    role="img"
-                    aria-label={s.label}
-                    style={`-webkit-mask-image: url(${url}); mask-image: url(${url});`}
-                  />
-                ) : (
-                  <span class="stack-glyph stack-glyph--text" role="img" aria-label={s.label}>{s.label}</span>
-                )}
-                <div class="name">{s.label}</div>
-              </li>
-            );
-          })}
-        </ul>
+        <div class="skill-groups" aria-label="Full technology stack">
+          {SKILL_GROUPS.map((group) => (
+            <section class="skill-group">
+              <h3 data-en={group.label.en} data-es={group.label.es}>{group.label.en}</h3>
+              <ul>
+                {group.items.map((item) => <li class="chip">{item}</li>)}
+              </ul>
+            </section>
+          ))}
+        </div>
       </details>
     </div>
   </section>
@@ -95,3 +85,10 @@ const tiles = [...HOME_STACK.map((s) => ({ s, hidden: false })), ...HOME_STACK.m
     document.querySelector('.stack-disclosure')?.setAttribute('open', '');
   }
 </script>
+
+<style>
+  .skill-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 36px; padding: 28px 0 8px; }
+  .skill-group h3 { margin: 0 0 12px; font-size: 14px; font-weight: 600; }
+  .skill-group ul { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; padding: 0; list-style: none; }
+  @media (max-width: 720px) { .skill-groups { grid-template-columns: 1fr; } }
+</style>

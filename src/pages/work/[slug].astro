@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { STR, WORK } from '../../data/site';
+import { PUBLICATIONS, STR, WORK } from '../../data/site';
 
 export function getStaticPaths() {
   return WORK.map((w) => ({ params: { slug: w.slug } }));
@@ -12,6 +12,9 @@ const w = WORK[idx];
 if (!w) throw new Error(`Unknown work slug: ${slug}`);
 const prev = WORK[(idx - 1 + WORK.length) % WORK.length];
 const next = WORK[(idx + 1) % WORK.length];
+const relatedPublication = w.relatedPublicationId
+  ? PUBLICATIONS.find((publication) => publication.id === w.relatedPublicationId)
+  : undefined;
 
 const en = STR.en;
 const es = STR.es;
@@ -68,33 +71,31 @@ const basePath = '/portfolio';
   <div class="container">
     <section style="padding: 32px 0 24px; border-top: 1px solid var(--hairline);">
       <div style="max-width: 760px; margin: 0 auto;">
-        <div class="eyebrow" style="margin-top: 32px;">
-          <span class="num">01</span><span>/</span>
-          <span data-en={en.overview} data-es={es.overview}>{en.overview}</span>
-        </div>
-        <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px;">
-          {w.body.en.map((para, i) => (
-            <p
-              class="body"
-              style="font-size: 17px; line-height: 1.7; margin: 0;"
-              data-en={para}
-              data-es={w.body.es[i]}
-            >{para}</p>
-          ))}
-        </div>
+        {w.sections.en.map((section, sectionIndex) => (
+          <section style="margin-top: 48px;">
+            <div class="eyebrow">
+              <span class="num">{String(sectionIndex + 1).padStart(2, '0')}</span><span>/</span>
+              <span data-en={section.title} data-es={w.sections.es[sectionIndex].title}>{section.title}</span>
+            </div>
+            <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 14px;">
+              {section.paragraphs.map((paragraph, paragraphIndex) => (
+                <p class="body" style="font-size: 17px; line-height: 1.7; margin: 0;" data-en={paragraph} data-es={w.sections.es[sectionIndex].paragraphs[paragraphIndex]}>{paragraph}</p>
+              ))}
+            </div>
+          </section>
+        ))}
 
-        <div class="eyebrow" style="margin-top: 56px;">
-          <span class="num">02</span><span>/</span>
-          <span data-en={w.notesLabel.en} data-es={w.notesLabel.es}>{w.notesLabel.en}</span>
-        </div>
-        <ul style="margin-top: 16px; padding: 0; list-style: none;">
-          {w.notes.en.map((n, i) => (
-            <li style="padding: 14px 0 14px 28px; border-top: 1px solid var(--hairline); position: relative; font-size: 15px; color: var(--fg-soft); line-height: 1.55;">
-              <span style="position: absolute; left: 0; top: 22px; width: 14px; height: 1px; background: var(--warm);"></span>
-              <span data-en={n} data-es={w.notes.es[i]}>{n}</span>
-            </li>
-          ))}
-        </ul>
+        {relatedPublication && (
+          <aside style="margin-top: 48px; border: 1px solid var(--border); padding: 24px;">
+            <div class="eyebrow" data-en="Related publication" data-es="Publicación relacionada">Related publication</div>
+            <div style="font-size: 18px; line-height: 1.4; margin-top: 12px;">{relatedPublication.title}</div>
+            <div class="small" style="margin-top: 8px;">
+              <span data-en={relatedPublication.role.en} data-es={relatedPublication.role.es}>{relatedPublication.role.en}</span>
+              <span> · {relatedPublication.venue} · {relatedPublication.year}</span>
+            </div>
+            <a class="mono" style="display: inline-block; margin-top: 14px; font-size: 12px; color: var(--fg);" href={relatedPublication.doi} target="_blank" rel="noopener noreferrer">DOI: 10.1117/12.3104049 ↗</a>
+          </aside>
+        )}
 
         <div style="margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--hairline);">
           <a

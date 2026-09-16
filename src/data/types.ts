@@ -14,6 +14,7 @@ export interface NavLabels {
   work: string;
   stack: string;
   experience: string;
+  publication: string;
   education: string;
   contact: string;
 }
@@ -22,6 +23,7 @@ export interface SectionLabels {
   work: string;
   otherLines: string;
   experience: string;
+  publication: string;
   education: string;
   stack: string;
   contact: string;
@@ -31,6 +33,7 @@ export interface SectionSubs {
   work: string;
   otherLines: string;
   experience: string;
+  publication: string;
   education: string;
   stack: string;
 }
@@ -68,16 +71,21 @@ export interface StrLang {
 
 export type Str = Bilingual<StrLang>;
 
+export interface WorkSection {
+  key: 'problem' | 'work' | 'approach' | 'impact' | 'decisions';
+  title: string;
+  paragraphs: string[];
+}
+
 export interface WorkCase {
   id: string;
   slug: string;
   title: Bilingual<string>;
   domain: Bilingual<string>;
   oneLiner: Bilingual<string>;
-  body: Bilingual<string[]>;
-  notesLabel: Bilingual<string>;
-  notes: Bilingual<string[]>;
+  sections: Bilingual<WorkSection[]>;
   stack: string[];
+  relatedPublicationId?: string;
 }
 
 export interface OtherLine {
@@ -114,6 +122,21 @@ export interface StackItem {
   label: string;
   slug: string | null;
   iconPath?: string;
+}
+
+export interface PublicationEntry {
+  id: string;
+  title: string;
+  venue: string;
+  year: number;
+  role: Bilingual<string>;
+  doi: string;
+}
+
+export interface SkillGroup {
+  id: string;
+  label: Bilingual<string>;
+  items: string[];
 }
 
 export interface WorkIntroEntry {
